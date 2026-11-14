@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://byque4w54oowj"]
+
+[ext_resource type="Script" uid="uid://c423nqlkeyre6" path="res://Player/PlayerController.gd" id="1_l8h54"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_2m7an"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2m7an"]
+
+[node name="Player" type="AnimatableBody3D" unique_id=944310348]
+script = ExtResource("1_l8h54")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=414659512]
+mesh = SubResource("SphereMesh_2m7an")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1339017187]
+shape = SubResource("SphereShape3D_2m7an")

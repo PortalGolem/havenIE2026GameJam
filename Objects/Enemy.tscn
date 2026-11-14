@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cohiqpndtgam"]
+
+[ext_resource type="Script" uid="uid://clddg3xglfj4d" path="res://Scenes/Scripts/enemy.gd" id="1_pfjfy"]
+
+[sub_resource type="Curve3D" id="Curve3D_jq2tr"]
+
+[node name="Node3D" type="Node3D" unique_id=703050472]
+
+[node name="Path3D" type="Path3D" parent="." unique_id=1872265639]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+curve = SubResource("Curve3D_jq2tr")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=1328785857]
+
+[node name="Enemy" type="Node3D" parent="Path3D/PathFollow3D" unique_id=1042224871]
+script = ExtResource("1_pfjfy")

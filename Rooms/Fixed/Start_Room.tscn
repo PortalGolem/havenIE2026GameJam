@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bc2navoi4cvju"]
+
+[node name="Start" type="Node3D" unique_id=1440636408]
+
+[node name="End" type="Node3D" parent="." unique_id=1945841556]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40884602, 2.162814)

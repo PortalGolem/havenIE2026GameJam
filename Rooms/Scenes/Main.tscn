@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://155xx7s6y6ta"]
+
+[ext_resource type="PackedScene" uid="uid://cohiqpndtgam" path="res://Objects/Enemy.tscn" id="1_r150o"]
+
+[sub_resource type="Environment" id="Environment_jq2tr"]
+background_mode = 2
+
+[node name="Node3D" type="Node3D" unique_id=55854493]
+
+[node name="Enemy" parent="." unique_id=703050472 instance=ExtResource("1_r150o")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=925197031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.920886)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=39958713]
+environment = SubResource("Environment_jq2tr")

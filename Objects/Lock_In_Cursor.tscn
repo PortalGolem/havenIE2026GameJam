@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cxxtjdfawvy3r"]
+
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_fr14y"]
+[ext_resource type="Script" uid="uid://dv0uxvs384kd0" path="res://Rooms/Scenes/Scripts/lock_in_cursor.gd" id="2_avj3d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kbhuk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fr14y")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Lock_In_Cursor" type="AnimatedSprite3D" unique_id=1158331081]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+billboard = 1
+no_depth_test = true
+fixed_size = true
+sprite_frames = SubResource("SpriteFrames_kbhuk")
+script = ExtResource("2_avj3d")

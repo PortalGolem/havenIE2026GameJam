@@ -3,14 +3,23 @@ extends AnimatableBody3D
 # the player has movement modes for each controll scheme.
 
 enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK}
+@export var mouseSensitivity:float 
 @export var groundSpeed:float
 @export var initialMovementMode:MOVEMENT_MODE
+
+@export var maxXRotation:float
+@export var minYRotation:float
+@export var maxYRotation:float
+
+var currentRotation := Vector2.ZERO
+
 var currentMovement:MOVEMENT_MODE
-var mouseInput:Vector2 = Vector2.ZERO
-var movementInput:Vector2 = Vector2.ZERO
+var mouseInput := Vector2.ZERO
+var movementInput := Vector2.ZERO
 var startedAttack:bool = false
 var finishedAttack:bool = false
 var jumped:bool = false
+
 
 func _input(event: InputEvent) -> void:
 		if event is InputEventMouseMotion:
@@ -48,8 +57,18 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
+	currentRotation += mouseInput * mouseSensitivity
+	basis = Basis.IDENTITY
+	
 	if currentMovement == MOVEMENT_MODE.GROUND:
 		var movement = movementInput.normalized() * groundSpeed * delta
 		movement = Vector3(movement.x, 0, movement.y)
 		movement = movement.rotated(Vector3.UP, rotation.y)
 		position += movement
+	elif currentMovement == MOVEMENT_MODE.AIR:
+		pass
+	elif currentMovement == MOVEMENT_MODE.WALL:
+		pass
+	elif currentMovement == MOVEMENT_MODE.ATTACK:
+		pass
+		

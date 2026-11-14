@@ -15,6 +15,8 @@ mesh = SubResource("SphereMesh_2m7an")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1339017187]
 shape = SubResource("SphereShape3D_2m7an")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=467448858]
-transform = Transform3D(1, 0, 0, 0, 0.9746736, 0.22363202, 0, -0.22363202, 0.9746736, 0, 2.1963158, 3.689209)
+[node name="CameraPivot" type="Node3D" parent="." unique_id=1679854579]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=467448858]
+transform = Transform3D(1, 0, 0, 0, 0.9746737, 0.22363204, 0, -0.22363204, 0.9746737, 0, 2.1963158, 3.689209)
 fov = 80.0

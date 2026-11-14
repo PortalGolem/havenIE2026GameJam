@@ -57,8 +57,16 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
+	print(mouseInput)
+	print(currentRotation)
 	currentRotation += mouseInput * mouseSensitivity
+	currentRotation.x = clampf(rad_to_deg(currentRotation.x), -rad_to_deg(maxXRotation), rad_to_deg(maxXRotation))
+	currentRotation.y = clampf(rad_to_deg(currentRotation.y), rad_to_deg(minYRotation), rad_to_deg(maxYRotation))
 	basis = Basis.IDENTITY
+	$CameraPivot.basis = Basis.IDENTITY
+	rotate(Vector3.UP, currentRotation.x)
+	$CameraPivot.rotate(Vector3.RIGHT, currentRotation.y)
+	mouseInput = Vector2.ZERO
 	
 	if currentMovement == MOVEMENT_MODE.GROUND:
 		var movement = movementInput.normalized() * groundSpeed * delta

@@ -19,8 +19,8 @@ var movementInput := Vector2.ZERO
 var startedAttack:bool = false
 var finishedAttack:bool = false
 var jumped:bool = false
-
-
+signal Lockin()
+signal UnLockin()
 func _input(event: InputEvent) -> void:
 		if event is InputEventMouseMotion:
 			mouseInput = event.relative
@@ -71,4 +71,24 @@ func _process(delta: float) -> void:
 		pass
 	elif currentMovement == MOVEMENT_MODE.ATTACK:
 		pass
+	
+	#attack code
+	if startedAttack == true:
+		#send out the signal to display cursors
+		Lockin.emit()
+		startedAttack = false
+		finishedAttack = false
 		
+	if finishedAttack == false:
+		#start the camera zoom in and slowing at a certain rate of change
+		#THESE NUMBERS ARE PLACEHOLDERS.
+		var zoom_in_speed = 0.1
+		var zoom_in_max = 10
+		
+		var slow_speed = 0.1
+		var slow_max = 10
+		
+	if finishedAttack == true:
+		UnLockin.emit()
+	
+	

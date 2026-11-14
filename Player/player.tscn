@@ -8,6 +8,12 @@
 
 [node name="Player" type="AnimatableBody3D" unique_id=944310348]
 script = ExtResource("1_l8h54")
+mouseSensitivity = null
+groundSpeed = null
+initialMovementMode = null
+maxXRotation = null
+minYRotation = null
+maxYRotation = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=414659512]
 mesh = SubResource("SphereMesh_2m7an")

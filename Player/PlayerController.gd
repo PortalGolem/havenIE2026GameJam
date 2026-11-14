@@ -59,9 +59,10 @@ func _process(delta: float) -> void:
 	
 	print(mouseInput)
 	print(currentRotation)
+	print(mouseInput * mouseSensitivity)
 	currentRotation += mouseInput * mouseSensitivity
-	currentRotation.x = clampf(rad_to_deg(currentRotation.x), -rad_to_deg(maxXRotation), rad_to_deg(maxXRotation))
-	currentRotation.y = clampf(rad_to_deg(currentRotation.y), rad_to_deg(minYRotation), rad_to_deg(maxYRotation))
+	currentRotation.x = clampf(currentRotation.x, -deg_to_rad(maxXRotation), deg_to_rad(maxXRotation))
+	currentRotation.y = clampf(currentRotation.y, deg_to_rad(minYRotation), deg_to_rad(maxYRotation))
 	basis = Basis.IDENTITY
 	$CameraPivot.basis = Basis.IDENTITY
 	rotate(Vector3.UP, currentRotation.x)

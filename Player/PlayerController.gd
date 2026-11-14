@@ -21,6 +21,13 @@ var finishedAttack:bool = false
 var jumped:bool = false
 signal Lockin()
 signal UnLockin()
+
+var Camera_FOV_def = 70
+var Camera_FOV = 70
+
+var Game_Speed = 1
+
+
 func _input(event: InputEvent) -> void:
 		if event is InputEventMouseMotion:
 			mouseInput = event.relative
@@ -93,11 +100,19 @@ func _process(delta: float) -> void:
 		#THESE NUMBERS ARE PLACEHOLDERS.
 		var zoom_in_speed = 0.1
 		var zoom_in_max = 10
+		var slow_speed = 0.01
+		var slow_max = 0.2
 		
-		var slow_speed = 0.1
-		var slow_max = 10
+		Game_Speed -= slow_speed * delta
+		clamp(Game_Speed, 1 - slow_max, 1)
 		
+		
+		
+		
+	#reset to normal
 	if finishedAttack == true:
 		UnLockin.emit()
+		Game_Speed = 1
 	
+	Engine.time_scale = Game_Speed
 	

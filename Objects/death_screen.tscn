@@ -27,12 +27,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/CenterContainer" unique_id=2086085416]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer" unique_id=1906115622]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=2086085416]
 custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_ebx83")
 theme_override_font_sizes/normal_font_size = 64
 text = "You baba-bounced back down to the bottom of the mount...
+"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=1650886507]
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_ebx83")
+theme_override_font_sizes/normal_font_size = 32
+text = "Press Esc to restart
 "
 fit_content = true
 horizontal_alignment = 1

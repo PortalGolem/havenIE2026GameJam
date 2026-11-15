@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://xc8byqlll7jh"]
 
-[ext_resource type="PackedScene" uid="uid://b4caetw8ywc3d" path="res://Objects/FBX Files/WallTerrain_Medium_Indent.fbx" id="1_dqkdl"]
+[ext_resource type="PackedScene" uid="uid://b4caetw8ywc3d" path="res://Assets/FBX Files/WallTerrain_Medium_Indent.fbx" id="1_dqkdl"]
 [ext_resource type="Texture2D" uid="uid://gdvgdk74r7y1" path="res://Materials/Textures/Wall Terrain Indent/Wall_Terrain_Indent_Color.png" id="2_bueiu"]
 [ext_resource type="Texture2D" uid="uid://32f1u5ticj1w" path="res://Materials/Textures/Wall Terrain Indent/Wall_Terrain_Indent_Normal.png" id="3_hnvi6"]
 [ext_resource type="Texture2D" uid="uid://cdc61j6k3gqae" path="res://Materials/Textures/Wall Terrain Indent/Wall_Terrain_Indent_Roughness.png" id="4_3lemy"]
@@ -11,7 +11,17 @@ roughness_texture = ExtResource("4_3lemy")
 normal_enabled = true
 normal_texture = ExtResource("3_hnvi6")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_73gjy"]
+size = Vector3(103.40747, 117.57428, 22.992538)
+
 [node name="WallTerrain_Medium_Indent" unique_id=1221184382 instance=ExtResource("1_dqkdl")]
 
-[node name="WallTerrain_Medium_Indent" parent="." index="0" unique_id=1744678084]
+[node name="WallTerrain_Medium_Indent" parent="." index="0" unique_id=224492598]
 surface_material_override/0 = SubResource("StandardMaterial3D_58wh8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=81383521]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=565198806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15002441, -15.669342, -5.7928543)
+shape = SubResource("BoxShape3D_73gjy")

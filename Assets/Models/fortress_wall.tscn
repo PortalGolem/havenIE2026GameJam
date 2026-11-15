@@ -10,7 +10,17 @@ roughness_texture = ExtResource("3_bwab6")
 normal_enabled = true
 normal_texture = ExtResource("2_5krae")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_6faft"]
+size = Vector3(103.22974, 20.229065, 17.86924)
+
 [node name="FortressWall" unique_id=1340503585]
 
 [node name="Fortress_Wall" parent="." index="0" unique_id=269696847]
 surface_material_override/0 = SubResource("StandardMaterial3D_016br")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1785279730]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=645292448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10241699, -6.0363464, -3.0911903)
+shape = SubResource("BoxShape3D_6faft")

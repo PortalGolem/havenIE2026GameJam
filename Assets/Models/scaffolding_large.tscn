@@ -19,7 +19,7 @@ size = Vector3(25.679125, 0.2848816, 56.987152)
 
 [node name="ScaffoldingLarge" unique_id=90800242 instance=ExtResource("1_pq6nb")]
 
-[node name="Scaffolding_Indent_002" parent="." index="0" unique_id=225538574]
+[node name="Scaffolding_Indent_002" parent="." index="0" unique_id=1821668421]
 surface_material_override/0 = SubResource("StandardMaterial3D_yywe8")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="." index="1" unique_id=570002766]

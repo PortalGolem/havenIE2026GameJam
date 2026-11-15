@@ -230,7 +230,10 @@ func _physics_process(delta: float) -> void:
 	#Engine.time_scale = Game_Speed
 	
 func _playerEnterWallCollider(wall:Node3D):
-	print("WALL!")
+	if (wallNormal.x > 0):
+		position.x = wallX - wallDistance
+	else:
+		position.x = wallX + wallDistance
 	wallNormal = wall.position - position
 	wallX = wall.position.x
 	

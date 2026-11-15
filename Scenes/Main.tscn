@@ -1,9 +1,90 @@
 [gd_scene format=3 uid="uid://155xx7s6y6ta"]
 
-[sub_resource type="Environment" id="Environment_jq2tr"]
+[ext_resource type="PackedScene" uid="uid://byque4w54oowj" path="res://Player/player.tscn" id="1_r150o"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_idj7w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kln2b"]
+size = Vector3(1, 35.49048, 610.9808)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rgh2o"]
+size = Vector3(1, 35.49048, 71.45166)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pbw6q"]
+
+[sub_resource type="Sky" id="Sky_v1gob"]
+sky_material = SubResource("ProceduralSkyMaterial_pbw6q")
+
+[sub_resource type="Environment" id="Environment_jw32o"]
 background_mode = 2
+sky = SubResource("Sky_v1gob")
 
 [node name="Node3D" type="Node3D" unique_id=55854493]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=39958713]
-environment = SubResource("Environment_jq2tr")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1764565318]
+transform = Transform3D(0.90468735, 0.30894443, 0.29341793, -0.426076, 0.6559819, 0.6230144, 0, -0.6886516, 0.72509235, 0, 4.381582, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=269159064]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2094313, 0)
+mesh = SubResource("BoxMesh_idj7w")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2" unique_id=824214165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1852422, -22.310482)
+mesh = SubResource("BoxMesh_idj7w")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D2" unique_id=634466521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1852422, -22.310482)
+mesh = SubResource("BoxMesh_idj7w")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D2/MeshInstance3D2" unique_id=662984235]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1852422, -22.310482)
+mesh = SubResource("BoxMesh_idj7w")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D2/MeshInstance3D2/MeshInstance3D2" unique_id=443044176]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1852422, -22.310482)
+mesh = SubResource("BoxMesh_idj7w")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=110971663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4880176, 0, 71.14825)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=426617479]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.121704, 205.52997)
+shape = SubResource("BoxShape3D_kln2b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1367865020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 14.662356, 4.7683716e-07, -6.121704, -35.22583)
+mesh = SubResource("BoxMesh_rgh2o")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=100686751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.383832, 0, 71.14825)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=288012873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.121704, -6.2170715)
+shape = SubResource("BoxShape3D_kln2b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=1032606640]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 14.662356, 0, -6.121704, -35.22583)
+mesh = SubResource("BoxMesh_rgh2o")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=50909629]
+environment = SubResource("Environment_jw32o")
+
+[node name="Player" parent="." unique_id=944310348 instance=ExtResource("1_r150o")]
+sync_to_physics = false
+mouseSensitivity = 0.01
+groundSpeed = 50.0
+airSpeed = 12.0
+airDrag = 0.5
+airGravity = 4.5
+wallDrag = 0.5
+wallGravity = 4.5
+wallDistance = 1.0
+DashSpeed = 100.0
+initialMovementMode = 1
+maxXRotation = 45.0
+minYRotation = -30.0
+maxYRotation = 45.0
+jumpVector = Vector3(10, 10, 25)
+dashVector = Vector3(0, 3, 20)

@@ -26,9 +26,6 @@ enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK, DASH}
 @export var dash_speed = 30
 @export var dash_lock_time = 120
 @export var dash_lock_timer = dash_lock_time
-var dash_buffer_time = 60
-var dash_buffer_timer = dash_buffer_time
-var dashable = true
 var dashing = false
 
 
@@ -132,9 +129,7 @@ func _process(delta: float) -> void:
 		if dashing == false:
 			dash_timer = dash_time
 			dash_lock_timer = dash_lock_time
-			
 			dashing = true
-			dashable = false
 			
 			#GET CAMERA DIRECTION SO WE CAN NORMALIZE OUR MOVEMENT IN THE DIRECTION WE WANNA
 		
@@ -149,14 +144,8 @@ func _process(delta: float) -> void:
 		dash_timer -= 1
 		#USE CAMERA DIRECTION TO DEFINE WHERE HE MOVES EACH FRAME
 	else:
-		dash_buffer_timer = dash_buffer_time
-	
 		dashing = false
-	#DASH BUFFER COUNTDOWN CODE
-	if dash_buffer_timer > 0 && dashing == false:
-		dash_buffer_timer -= 1
-	else:
-		dashable = true
+	
 	
 	#attack code
 	if startedAttack == true:

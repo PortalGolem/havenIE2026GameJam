@@ -132,7 +132,7 @@ func _physics_process(delta: float) -> void:
 		wallCollision = false
 	elif currentMovement == MOVEMENT_MODE.AIR:
 		# accept input left and right and change velocity
-		velocity = move_towards_tripple_vector(Vector3.BACK * minZVelocity, velocity, delta * airDrag)
+		velocity = move_towards_tripple_vector(-Vector3.BACK * minZVelocity, velocity, delta * airDrag)
 		velocity += Vector3(delta * movementInput.x * airSpeed, 0, 0)
 		velocity.y -= airGravity * delta
 		position += Vector3(velocity.x, velocity.y, -velocity.z) * delta
@@ -191,10 +191,10 @@ func _physics_process(delta: float) -> void:
 	if startedAttack == true:
 		#send out the signal to display cursors
 		Lockin.emit()
-		var cursors:Array
+		var cursors:Array[LockInCursor]
 		findByClass(get_tree().root, "LockInCursor", cursors)
-		for thing in cursors:
-			pass
+		for cursor in cursors:
+			if (cursor)
 		startedAttack = false
 		finishedAttack = false
 		

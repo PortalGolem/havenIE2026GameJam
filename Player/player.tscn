@@ -9,7 +9,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_2m7an"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lgp2p"]
-radius = 0.58963436
+radius = 0.49518242
 
 [sub_resource type="QuadMesh" id="QuadMesh_btcbx"]
 resource_local_to_scene = true

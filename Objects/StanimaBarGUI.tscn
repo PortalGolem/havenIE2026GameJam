@@ -18,10 +18,10 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -144.0
-offset_top = 541.00006
-offset_right = 49.918945
-offset_bottom = -34.702637
+offset_left = -143.99994
+offset_top = 939.0
+offset_right = 49.919006
+offset_bottom = 363.29736
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.48, 1.48)
@@ -63,3 +63,26 @@ offset_right = 368.0
 offset_bottom = 41.0
 theme_override_fonts/normal_font = ExtResource("2_qbd0q")
 text = "STAMINA"
+
+[node name="VelocityBlue" type="RichTextLabel" parent="." unique_id=1677497314]
+layout_mode = 0
+offset_left = 37.16214
+offset_top = 27.702667
+offset_right = 147.97296
+offset_bottom = 45.945923
+theme_override_colors/default_color = Color(0.26666668, 0.94509804, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_qbd0q")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center]Velocity: 12 m/s"
+
+[node name="Velocity" type="RichTextLabel" parent="VelocityBlue" unique_id=1095065240]
+layout_mode = 0
+offset_left = -3.0517578e-05
+offset_top = 0.6756592
+offset_right = 110.81079
+offset_bottom = 18.918915
+theme_override_fonts/normal_font = ExtResource("2_qbd0q")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center]Velocity: 12 m/s"

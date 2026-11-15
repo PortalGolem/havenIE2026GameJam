@@ -113,7 +113,7 @@ func _process(delta: float) -> void:
 		if dashed:
 			currentMovement = MOVEMENT_MODE.DASH
 	elif currentMovement == MOVEMENT_MODE.DASH:
-		
+		pass
 	
 	#attack code
 	if startedAttack == true:

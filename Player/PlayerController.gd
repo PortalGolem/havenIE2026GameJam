@@ -259,5 +259,5 @@ func check_wall_jump():
 			if (wallNormal.x > 0):
 				velocity += jumpVector
 			else:
-				velocity += Vector3(-jumpVector.x, jumpVector.y, -jumpVector.z)
+				velocity += Vector3(-jumpVector.x, jumpVector.y, jumpVector.z)
 			currentMovement = MOVEMENT_MODE.AIR

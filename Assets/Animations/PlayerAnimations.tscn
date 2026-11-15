@@ -58,7 +58,7 @@ graph_offset = Vector2(-76, -6)
 
 [node name="Player" unique_id=2124482649 instance=ExtResource("1_67765")]
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1966276048) index="0" unique_id=339576803]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1297845278) index="0" unique_id=574882920]
 bones/0/position = Vector3(-12.836943, -39.877167, -241.70932)
 bones/0/rotation = Quaternion(-0.2725642, 0.05556468, -0.043517005, 0.9595456)
 bones/1/position = Vector3(36.67784, -20.489857, -1.1551586)
@@ -120,10 +120,10 @@ bones/31/position = Vector3(-0.5966841, 13.617426, -4.7044444)
 bones/31/rotation = Quaternion(-0.18912347, 0.019850388, 0.063820325, 0.97967607)
 bones/32/position = Vector3(1.52201, 13.579217, -0.94746923)
 
-[node name="AlaskanMan_BaseMesh_001" parent="Armature/Skeleton3D" index="0" unique_id=1760465980]
+[node name="AlaskanMan_BaseMesh_001" parent="Armature/Skeleton3D" index="0" unique_id=1195416737]
 surface_material_override/0 = SubResource("StandardMaterial3D_l6kle")
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=2006220956]
+[node name="AnimationPlayer" parent="." index="1" unique_id=1885195003]
 autoplay = &"Falling"
 
 [node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" index="0" unique_id=1954361659]

@@ -3,12 +3,17 @@
 [ext_resource type="Script" uid="uid://c423nqlkeyre6" path="res://Player/PlayerController.gd" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://dl06wuwytb8l1" path="res://Objects/StanimaBarGUI.tscn" id="2_4ntmi"]
 [ext_resource type="PackedScene" uid="uid://chkuemajlf13r" path="res://Objects/SnowfallParticles.tscn" id="3_btcbx"]
+[ext_resource type="Script" uid="uid://cojeiqlpnirdq" path="res://Scripts/snowfall_particles.gd" id="4_gwnis"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_2m7an"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2m7an"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gwnis"]
+resource_local_to_scene = true
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_k53q1"]
 resource_local_to_scene = true
 size = Vector2(0.1, 0.1)
 
@@ -33,4 +38,13 @@ fov = 80.0
 [node name="StanimaBar" parent="." unique_id=1967122980 instance=ExtResource("2_4ntmi")]
 
 [node name="GPUParticles3D" parent="." unique_id=202149827 instance=ExtResource("3_btcbx")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -21.616, 9.59, 18.729)
+amount = 500
 draw_pass_1 = SubResource("QuadMesh_gwnis")
+script = ExtResource("4_gwnis")
+metadata/_edit_group_ = true
+
+[node name="GPUParticles3D" parent="GPUParticles3D" unique_id=1010964743 instance=ExtResource("3_btcbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00047302246, 0.00015068054, -74.88978)
+amount = 500
+draw_pass_1 = SubResource("QuadMesh_k53q1")

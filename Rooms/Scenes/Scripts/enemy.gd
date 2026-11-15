@@ -5,12 +5,15 @@ var death = false
 var stanima_gain:float = 20
 var cyclic = false
 var direction = 1.0
-
-signal E_death(stanima_gain:float)
+var Scene
+var Player
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Scene = get_tree().get_root()
+	Player = Scene.find_child("Player")
+	Player.enemy_killed.connect(death_global(id));
 	#type of path logic
 	if cyclic == false:
 		$"..".loop = false
@@ -21,9 +24,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	
-	
-	
 	#back and fourth
 	if cyclic == false:
 		if $"..".progress_ratio == 1:
@@ -39,11 +39,14 @@ func _physics_process(delta: float) -> void:
 	print(direction)
 	
 	if death == true:
-		E_death.emit(stanima_gain)
 		if is_instance_valid($"../../.."):
 			$"../../..".queue_free()
 		
 	pass
+	
+func death_global(id):
+	death = true
+	#write code to check the ID against self 2 know if died
 	
 
 	

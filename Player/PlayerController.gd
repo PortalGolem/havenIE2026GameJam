@@ -192,7 +192,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0
 		velocity.x = 0
-		velocity += jumpVector.rotated(Vector3.UP, rotation.y)
+		velocity += jumpVector
 		dashing = false
 	
 	

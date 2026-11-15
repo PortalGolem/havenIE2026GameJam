@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b3ojylgg1ygnb"]
+
+[ext_resource type="PackedScene" uid="uid://wfrrlste675b" path="res://Objects/FBX Files/FortressSmall.fbx" id="1_1eyno"]
+[ext_resource type="Texture2D" uid="uid://bss1tevhnbc5y" path="res://Materials/Textures/Fortress Small/Fortress_Small_Color.png" id="2_qu13w"]
+[ext_resource type="Texture2D" uid="uid://c6ab5mntrp03h" path="res://Materials/Textures/Fortress Small/Fortress_Small_Normal.png" id="3_vuo38"]
+[ext_resource type="Texture2D" uid="uid://cbbkaii0xxe0w" path="res://Materials/Textures/Fortress Small/Fortress_Small_Roughness.png" id="4_xmgon"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stuha"]
+albedo_texture = ExtResource("2_qu13w")
+roughness_texture = ExtResource("4_xmgon")
+normal_enabled = true
+normal_texture = ExtResource("3_vuo38")
+
+[node name="FortressSmall" unique_id=1959204486 instance=ExtResource("1_1eyno")]
+
+[node name="Fortress_Small" parent="." index="0" unique_id=160169231]
+surface_material_override/0 = SubResource("StandardMaterial3D_stuha")

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b6mni0yo8urd7"]
+
+[ext_resource type="PackedScene" uid="uid://gixgyxtth1yf" path="res://Objects/FBX Files/ScaffoldingLarge_Supports.fbx" id="1_bbefj"]
+[ext_resource type="Texture2D" uid="uid://fni60aa10ywm" path="res://Materials/Textures/Scaffolding Large/Scaffolding_Large_Support_Color.png" id="2_ny0gd"]
+[ext_resource type="Texture2D" uid="uid://cn5eixrcx3e4v" path="res://Materials/Textures/Scaffolding Large/Scaffolding_Large_Roughness.png" id="3_khytt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3b62g"]
+albedo_texture = ExtResource("2_ny0gd")
+roughness_texture = ExtResource("3_khytt")
+
+[node name="ScaffoldingLarge_Supports" unique_id=1233929110 instance=ExtResource("1_bbefj")]
+
+[node name="ScaffoldingSupport" parent="." index="0" unique_id=1299371976]
+surface_material_override/0 = SubResource("StandardMaterial3D_3b62g")

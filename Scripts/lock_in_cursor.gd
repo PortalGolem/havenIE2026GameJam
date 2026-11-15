@@ -1,3 +1,4 @@
+class_name LockInCursor
 extends AnimatedSprite3D
 
 var Player_Lockin = true

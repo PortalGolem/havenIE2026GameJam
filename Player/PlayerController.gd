@@ -45,7 +45,7 @@ signal enemy_killed(id)
 
 
 var currentRotation := Vector2.ZERO
-var velocity := Vector3.FORWARD * 10
+@export var velocity := Vector3.FORWARD * 10
 
 var currentMovement:MOVEMENT_MODE
 
@@ -190,6 +190,10 @@ func _physics_process(delta: float) -> void:
 	if startedAttack == true:
 		#send out the signal to display cursors
 		Lockin.emit()
+		var cursors:Array
+		findByClass(get_tree().root, "LockInCursor", cursors)
+		for thing in cursors:
+			pass
 		startedAttack = false
 		finishedAttack = false
 		

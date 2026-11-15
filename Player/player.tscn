@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://byque4w54oowj"]
 
 [ext_resource type="Script" uid="uid://c423nqlkeyre6" path="res://Player/PlayerController.gd" id="1_l8h54"]
+[ext_resource type="PackedScene" uid="uid://dl06wuwytb8l1" path="res://Objects/StanimaBarGUI.tscn" id="2_4ntmi"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_2m7an"]
 
@@ -22,3 +23,5 @@ transform = Transform3D(1, 0, 0, 0, 0.9746737, 0.22363204, 0, -0.22363204, 0.974
 fov = 80.0
 
 [node name="Timer" type="Timer" parent="." unique_id=618764724]
+
+[node name="StanimaBar" parent="." unique_id=1967122980 instance=ExtResource("2_4ntmi")]

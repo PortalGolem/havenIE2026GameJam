@@ -28,6 +28,14 @@ enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK, DASH}
 @export var dash_lock_timer = dash_lock_time
 var dashing = false
 
+var stanima_max = 100
+var stanima_cur = 100
+var stanima_dash_cost = 10
+var stanima_jump_cost = 10
+var stanima_regeneration = 0.5
+
+signal enemy_killed(id)
+
 
 var currentRotation := Vector2.ZERO
 var velocity := Vector3.ZERO
@@ -89,6 +97,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#STANIMA CODE
+	stanima_cur += stanima_regeneration * delta
+	
+	
+	
 	
 	print(mouseInput)
 	print(currentRotation)

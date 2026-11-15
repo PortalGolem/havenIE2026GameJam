@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dl06wuwytb8l1"]
+
+[ext_resource type="Script" uid="uid://djk1oijm2qbtu" path="res://Rooms/Scenes/Scripts/stanima_bar_gui.gd" id="1_3megg"]
+[ext_resource type="FontFile" uid="uid://bxobkj5vh3kvf" path="res://Fonts/BBHBogle-Regular.ttf" id="2_qbd0q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jq2tr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+skew = Vector2(1, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[node name="StanimaBar" type="Control" unique_id=1967122980]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3megg")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1066422025]
+skew = 0.7853982
+
+[node name="ColorRect" type="ColorRect" parent="Node2D" unique_id=677128687]
+offset_left = 23.999998
+offset_top = 25.455845
+offset_right = 212.0
+offset_bottom = 35.35534
+color = Color(0.26666668, 0.94509804, 1, 1)
+
+[node name="Panel" type="Panel" parent="." unique_id=1776215295]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 17.0
+offset_right = 192.0
+offset_bottom = 25.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jq2tr")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="." unique_id=1919147165]
+layout_mode = 0
+offset_left = 69.0
+offset_top = -1.0
+offset_right = 437.0
+offset_bottom = 39.0
+theme_override_colors/default_color = Color(0.26666668, 0.94509804, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_qbd0q")
+text = "STAMINA"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RichTextLabel2" unique_id=1071023090]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 368.0
+offset_bottom = 41.0
+theme_override_fonts/normal_font = ExtResource("2_qbd0q")
+text = "STAMINA"

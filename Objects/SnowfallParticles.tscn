@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://chkuemajlf13r"]
+
+[sub_resource type="Curve" id="Curve_ppco0"]
+_data = [Vector2(0, 1), 0.0, 1.4, 0, 0, Vector2(0.90000004, 0), -1.805275, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_k7lsc"]
+curve = SubResource("Curve_ppco0")
+
+[sub_resource type="Gradient" id="Gradient_lyqho"]
+offsets = PackedFloat32Array(0, 0.57831323)
+colors = PackedColorArray(1, 1, 1, 0.14901961, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8xx7o"]
+gradient = SubResource("Gradient_lyqho")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jq2tr"]
+emission_shape_scale = Vector3(30.515, 4, 36.41)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(10, -5.035, 0)
+scale_max = 4.0
+color_initial_ramp = SubResource("GradientTexture1D_8xx7o")
+alpha_curve = SubResource("CurveTexture_k7lsc")
+turbulence_enabled = true
+turbulence_noise_scale = 2.085
+turbulence_influence_min = 0.032
+turbulence_influence_max = 0.22800002
+
+[sub_resource type="QuadMesh" id="QuadMesh_bx4nl"]
+resource_local_to_scene = true
+size = Vector2(0.1, 0.1)
+
+[node name="GPUParticles3D" type="GPUParticles3D" unique_id=202149827]
+amount = 300
+lifetime = 14.06
+preprocess = 30.0
+process_material = SubResource("ParticleProcessMaterial_jq2tr")
+draw_pass_1 = SubResource("QuadMesh_bx4nl")

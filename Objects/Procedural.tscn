@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://brl2e02v7xk3w"]
 
-[ext_resource type="Script" uid="uid://dkyldu08hljdl" path="res://Rooms/Scenes/Scripts/procedural.gd" id="1_1yevh"]
+[ext_resource type="Script" uid="uid://dkyldu08hljdl" path="res://Player/Scenes/Scripts/procedural.gd" id="1_1yevh"]
 
 [node name="Procedural" type="Node3D" unique_id=959096524]
 script = ExtResource("1_1yevh")

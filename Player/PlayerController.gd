@@ -40,6 +40,7 @@ var currentMovement:MOVEMENT_MODE
 
 var mouseInput := Vector2.ZERO
 var movementInput := Vector2.ZERO
+var wallCollision:bool = false
 var startedAttack:bool = false
 var finishedAttack:bool = false
 var jumped:bool = false
@@ -148,15 +149,14 @@ func _process(delta: float) -> void:
 			
 			#GET CAMERA DIRECTION SO WE CAN NORMALIZE OUR MOVEMENT IN THE DIRECTION WE WANNA
 		
-		dash_lock_timer -= 1
-		#if dash_lock_timer <= 0:
-			#allow movement to other states
-		
-		pass
+		dash_lock_timer -= delta
+		if dash_lock_timer <= 0:
+			if wallCollision:
+				startWallMovement()
 	
 	#DASH MOVEMENT CODE
 	if dash_timer > 0:
-		dash_timer -= 1
+		dash_timer -= delta
 		#USE CAMERA DIRECTION TO DEFINE WHERE HE MOVES EACH FRAME
 	else:
 		dashing = false
@@ -202,3 +202,5 @@ func _process(delta: float) -> void:
 	Camera.FOV = Camera_FOV
 	Engine.time_scale = Game_Speed
 	
+func startWallMovement():
+	pass

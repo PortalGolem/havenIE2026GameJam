@@ -261,24 +261,24 @@ func move_towards_tripple_vector(target:Vector3, startingPosition:Vector3, ammou
 	var returnAmmount:Vector3
 	if startingPosition.x > target.x:
 		returnAmmount.x = startingPosition.x - ammount.x
-		returnAmmount.x = min(target.x, returnAmmount.x)
+		returnAmmount.x = max(target.x, returnAmmount.x)
 	else:
 		returnAmmount.x = startingPosition.x + ammount.x
-		returnAmmount.x = max(target.x, returnAmmount.x)
+		returnAmmount.x = min(target.x, returnAmmount.x)
 	
 	if startingPosition.y > target.y:
 		returnAmmount.y = startingPosition.y - ammount.y
-		returnAmmount.y = min(target.y, returnAmmount.y)
+		returnAmmount.y = max(target.y, returnAmmount.y)
 	else:
 		returnAmmount.y = startingPosition.y + ammount.y
-		returnAmmount.y = max(target.y, returnAmmount.y)
+		returnAmmount.y = min(target.y, returnAmmount.y)
 	
 	if startingPosition.z > target.z:
 		returnAmmount.z = startingPosition.z - ammount.z
-		returnAmmount.z = min(target.z, returnAmmount.z)
+		returnAmmount.z = max(target.z, returnAmmount.z)
 	else:
 		returnAmmount.z = startingPosition.z + ammount.z
-		returnAmmount.z = max(target.z, returnAmmount.z)
+		returnAmmount.z = min(target.z, returnAmmount.z)
 		
 	return returnAmmount
 

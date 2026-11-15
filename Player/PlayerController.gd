@@ -35,9 +35,9 @@ var dashing = false
 
 var stanima_max = 100
 @export var stanima = 100
-var stanima_dash_cost = 10
-var stanima_jump_cost = 10
-var stanima_regeneration = 0.5
+@export var stanima_dash_cost = 10
+@export var stanima_jump_cost = 10
+@export var stanima_regeneration = 3.5
 var wallX = 0.0
 
 signal enemy_killed(id)
@@ -111,6 +111,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	#STANIMA CODE
 	stanima += stanima_regeneration * delta
+	$StanimaBar.Stanima = stanima
 	
 	currentRotation += -mouseInput * mouseSensitivity
 	currentRotation.x = clampf(currentRotation.x, deg_to_rad(-maxXRotation + 180), deg_to_rad(maxXRotation + 180))
@@ -134,12 +135,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= airGravity * delta
 		position += velocity.rotated(Vector3.UP, rotation.y) * delta
 		#Handle dash inputs
-		if dashed:
-			dashed = false
-			currentMovement = MOVEMENT_MODE.DASH
-		if wallCollision:
-			currentMovement = MOVEMENT_MODE.WALL
-			wallCollision = false
+		check_dash()
+		check_wall()
 	elif currentMovement == MOVEMENT_MODE.WALL:
 		velocity.x = 0
 		velocity.y -= wallGravity * delta
@@ -149,22 +146,13 @@ func _physics_process(delta: float) -> void:
 			position.x = wallX - wallDistance
 		else:
 			position.x = wallX + wallDistance
-		if jumped:
-			velocity.y = 0
-			if (wallNormal.x > 0):
-				velocity += jumpVector
-			else:
-				velocity += Vector3(-jumpVector.x, jumpVector.y, -jumpVector.z)
-			currentMovement = MOVEMENT_MODE.AIR
+		check_wall_jump()
 		#Handle dash inputs
-		if dashed:
-			dashed = false
-			currentMovement = MOVEMENT_MODE.DASH
+		check_dash()
 		wallCollision = false
 	elif currentMovement == MOVEMENT_MODE.ATTACK:
 		#Handle dash inputs
-		if dashed:
-			currentMovement = MOVEMENT_MODE.DASH
+		check_dash()
 	elif currentMovement == MOVEMENT_MODE.DASH:
 		#setup timers
 		if dashing == false:
@@ -248,3 +236,21 @@ func findByClass(node: Node, className : String, result : Array) -> void:
 		result.push_back(node)
 	for child in node.get_children():
 		findByClass(child, className, result)
+	
+func check_dash():
+	if dashed && stanima > stanima_dash_cost:
+			stanima -= stanima_dash_cost
+			dashed = false
+func check_wall():
+	if wallCollision:
+			currentMovement = MOVEMENT_MODE.WALL
+			wallCollision = false
+func check_wall_jump():
+	if jumped && stanima > stanima_jump_cost:
+			stanima -= stanima_jump_cost
+			velocity.y = 0
+			if (wallNormal.x > 0):
+				velocity += jumpVector
+			else:
+				velocity += Vector3(-jumpVector.x, jumpVector.y, -jumpVector.z)
+			currentMovement = MOVEMENT_MODE.AIR

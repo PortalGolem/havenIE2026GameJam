@@ -105,7 +105,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#STANIMA CODE
-	stanima_cur += stanima_regeneration * delta
+	stanima += stanima_regeneration * delta
 	
 	currentRotation += -mouseInput * mouseSensitivity
 	currentRotation.x = clampf(currentRotation.x, deg_to_rad(-maxXRotation + 180), deg_to_rad(maxXRotation + 180))

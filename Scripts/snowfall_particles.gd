@@ -14,7 +14,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if $"..".global_position.z >= 55 - z_ahead + $".".global_position:
+	if $"..".global_position.z >= 58 - z_ahead + $".".global_position:
 		position_global = $"..".global_position.z + z_ahead
 	
 	$".".global_position = position_global

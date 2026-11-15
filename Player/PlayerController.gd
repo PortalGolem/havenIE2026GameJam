@@ -8,12 +8,15 @@ enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK, DASH}
 @export var airSpeed:float
 @export var airDrag:float
 @export var airGravity:float
+@export var wallDrag:float
+@export var wallGravity:float
 @export var DashSpeed:float
 @export var initialMovementMode:MOVEMENT_MODE
 
 @export var maxXRotation:float
 @export var minYRotation:float
 @export var maxYRotation:float
+@export var jumpVector:Vector3
 
 var currentRotation := Vector2.ZERO
 var velocity := Vector3.ZERO
@@ -28,6 +31,7 @@ var finishedAttack:bool = false
 var jumped:bool = false
 var dashed:bool = false
 var movementLocked:bool = false
+var wallNormal:Vector3
 signal Lockin()
 signal UnLockin()
 
@@ -105,6 +109,17 @@ func _process(delta: float) -> void:
 		if dashed:
 			currentMovement = MOVEMENT_MODE.DASH
 	elif currentMovement == MOVEMENT_MODE.WALL:
+		velocity.x = 0
+		velocity.y -= wallGravity * delta
+		velocity.move_toward(Vector3.ZERO, wallDrag * delta)
+		
+		position += velocity
+		if jumped:
+			if (wallNormal.x > 0):
+				velocity += jumpVector
+			else:
+				velocity += Vector3(-jumpVector.x, jumpVector.y, jumpVector.z)
+			currentMovement = MOVEMENT_MODE.AIR
 		#Handle dash inputs
 		if dashed:
 			currentMovement = MOVEMENT_MODE.DASH

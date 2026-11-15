@@ -1,13 +1,92 @@
 [gd_scene format=3 uid="uid://c5rvwcp4pjao2"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_jq2tr"]
-size = Vector3(3.8562012, 1.8774414, 1)
+[ext_resource type="PackedScene" uid="uid://cecjcmhwohpui" path="res://Assets/Models/wall_terrain_large.tscn" id="1_235x6"]
 
 [node name="Start" type="Node3D" unique_id=2038951143]
 
 [node name="End" type="Node3D" parent="." unique_id=954906942]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8419814, 2.5853677)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.4502883, 1069.5483)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=706729928]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50964355, 0.4387207, 0)
-mesh = SubResource("BoxMesh_jq2tr")
+[node name="WallTerrain_Large5" parent="." unique_id=244975756 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -18.929298, 18.05566, 37.65443)
+
+[node name="WallTerrain_Large6" parent="." unique_id=1925773018 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -18.929298, 18.05566, 115.216125)
+
+[node name="WallTerrain_Large7" parent="." unique_id=299000878 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -18.929298, 18.05566, 193.14516)
+
+[node name="WallTerrain_Large8" parent="." unique_id=1015713520 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -18.929298, 18.05566, 270.69495)
+
+[node name="WallTerrain_Large9" parent="." unique_id=2101080136 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -18.929298, 18.05566, 344.88455)
+
+[node name="WallTerrain_Large10" parent="." unique_id=1889398364 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -18.929298, 18.05566, 422.44626)
+
+[node name="WallTerrain_Large11" parent="." unique_id=245174911 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -18.929298, 18.05566, 500.37527)
+
+[node name="WallTerrain_Large12" parent="." unique_id=384442861 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -18.929298, 18.05566, 577.92505)
+
+[node name="WallTerrain_Large13" parent="." unique_id=1092368733 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -18.929298, 18.05566, 646.4204)
+
+[node name="WallTerrain_Large14" parent="." unique_id=1545978452 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -18.929298, 18.05566, 723.9821)
+
+[node name="WallTerrain_Large15" parent="." unique_id=1773771489 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -18.929298, 18.05566, 801.91113)
+
+[node name="WallTerrain_Large16" parent="." unique_id=87787290 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -18.929298, 18.05566, 879.46094)
+
+[node name="WallTerrain_Large17" parent="." unique_id=2075948704 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -18.929298, 18.05566, 952.794)
+
+[node name="WallTerrain_Large18" parent="." unique_id=793337296 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -18.929298, 18.05566, 1030.3557)
+
+[node name="WallTerrain_Large19" parent="." unique_id=2010624746 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 37.65443)
+
+[node name="WallTerrain_Large20" parent="." unique_id=269458937 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 115.216125)
+
+[node name="WallTerrain_Large21" parent="." unique_id=336213835 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 193.14516)
+
+[node name="WallTerrain_Large22" parent="." unique_id=675908858 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 270.69495)
+
+[node name="WallTerrain_Large23" parent="." unique_id=350754873 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 344.88455)
+
+[node name="WallTerrain_Large24" parent="." unique_id=1999249502 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 422.44626)
+
+[node name="WallTerrain_Large25" parent="." unique_id=1143175448 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 500.37527)
+
+[node name="WallTerrain_Large26" parent="." unique_id=1128264919 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 577.92505)
+
+[node name="WallTerrain_Large27" parent="." unique_id=1186071119 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 646.4204)
+
+[node name="WallTerrain_Large28" parent="." unique_id=1631335350 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 723.9821)
+
+[node name="WallTerrain_Large29" parent="." unique_id=454990735 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 801.91113)
+
+[node name="WallTerrain_Large30" parent="." unique_id=1807549148 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 879.46094)
+
+[node name="WallTerrain_Large31" parent="." unique_id=1996496467 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 952.794)
+
+[node name="WallTerrain_Large32" parent="." unique_id=1461285255 instance=ExtResource("1_235x6")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.672516, 18.05566, 1030.3557)

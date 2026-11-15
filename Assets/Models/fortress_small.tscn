@@ -11,17 +11,16 @@ roughness_texture = ExtResource("4_xmgon")
 normal_enabled = true
 normal_texture = ExtResource("3_vuo38")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_6faft"]
-size = Vector3(13.164558, 28.628662, 13.102646)
+[sub_resource type="BoxShape3D" id="BoxShape3D_jq2tr"]
+size = Vector3(9, 27.518555, 8)
 
 [node name="FortressSmall" unique_id=1959204486 instance=ExtResource("1_1eyno")]
 
-[node name="Fortress_Small" parent="." index="0" unique_id=1703872343]
+[node name="Fortress_Small" parent="." index="0" unique_id=1460062697]
 surface_material_override/0 = SubResource("StandardMaterial3D_stuha")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=654049932]
-collision_layer = 2
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=857291773]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=443642479]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.050678253, -5.6226807, -0.13759613)
-shape = SubResource("BoxShape3D_6faft")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1942932998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.2592773, 0.06298828)
+shape = SubResource("BoxShape3D_jq2tr")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cohiqpndtgam"]
 
-[ext_resource type="Script" uid="uid://clddg3xglfj4d" path="res://Player/Scenes/Scripts/enemy.gd" id="1_pfjfy"]
+[ext_resource type="Script" uid="uid://clddg3xglfj4d" path="res://Scripts/enemy.gd" id="1_pfjfy"]
 [ext_resource type="PackedScene" uid="uid://cxxtjdfawvy3r" path="res://Objects/Lock_In_Cursor.tscn" id="2_82iww"]
 
 [sub_resource type="Curve3D" id="Curve3D_jq2tr"]

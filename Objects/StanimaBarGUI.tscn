@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dl06wuwytb8l1"]
 
-[ext_resource type="Script" uid="uid://djk1oijm2qbtu" path="res://Rooms/Scenes/Scripts/stanima_bar_gui.gd" id="1_3megg"]
+[ext_resource type="Script" uid="uid://djk1oijm2qbtu" path="res://Scripts/stanima_bar_gui.gd" id="1_3megg"]
 [ext_resource type="FontFile" uid="uid://bxobkj5vh3kvf" path="res://Fonts/BBHBogle-Regular.ttf" id="2_qbd0q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jq2tr"]

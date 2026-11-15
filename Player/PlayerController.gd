@@ -193,8 +193,8 @@ func _physics_process(delta: float) -> void:
 		Lockin.emit()
 		var cursors:Array[LockInCursor]
 		findByClass(get_tree().root, "LockInCursor", cursors)
-		for cursor in cursors:
-			if (cursor)
+		#for cursor in cursors:
+		#	if (cursor)
 		startedAttack = false
 		finishedAttack = false
 		

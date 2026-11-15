@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cecjcmhwohpui"]
+
+[ext_resource type="PackedScene" uid="uid://cvfv4xmrfwd7e" path="res://Objects/FBX Files/WallTerrain_Large.fbx" id="1_t1m1x"]
+[ext_resource type="Texture2D" uid="uid://dyygb3rqy7086" path="res://Materials/Textures/Wall Terrain Large/Wall_Terrain_Large_Color.png" id="2_sbxr4"]
+[ext_resource type="Texture2D" uid="uid://bcint4e3d7jng" path="res://Materials/Textures/Wall Terrain Large/Wall_Terrain_Large_Normal.png" id="3_jnovo"]
+[ext_resource type="Texture2D" uid="uid://b3bby7i0nu103" path="res://Materials/Textures/Wall Terrain Large/Wall_Terrain_Large_Roughness.png" id="4_6ktwm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80hoq"]
+albedo_texture = ExtResource("2_sbxr4")
+roughness_texture = ExtResource("4_6ktwm")
+normal_enabled = true
+normal_texture = ExtResource("3_jnovo")
+
+[node name="WallTerrain_Large" unique_id=244975756 instance=ExtResource("1_t1m1x")]
+
+[node name="WallTerrain_Large" parent="." index="0" unique_id=404776055]
+surface_material_override/0 = SubResource("StandardMaterial3D_80hoq")

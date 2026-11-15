@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://byque4w54oowj" path="res://Player/player.tscn" id="1_qf4af"]
 [ext_resource type="Texture2D" uid="uid://dnbrywea7oakp" path="res://Materials/Textures/Fortress Wall/Fortress_Wall_Color.png" id="2_o24f2"]
-[ext_resource type="PackedScene" uid="uid://cohiqpndtgam" path="res://Objects/Enemy.tscn" id="3_uakvj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2m7an"]
 
@@ -27,6 +26,9 @@ size = Vector3(1, 35.49048, 71.45166)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uakvj"]
 albedo_texture = ExtResource("2_o24f2")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lgp2p"]
+size = Vector3(100, 1, 1000)
 
 [node name="AndrewTest" type="Node3D" unique_id=1684309353]
 
@@ -102,5 +104,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 14.662356, 0, -6.121704, -35.225
 material_override = SubResource("StandardMaterial3D_uakvj")
 mesh = SubResource("BoxMesh_lgp2p")
 
-[node name="Enemy" parent="." unique_id=703050472 instance=ExtResource("3_uakvj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0086999, 7.7568865, 84.757095)
+[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=1157133502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22.074902, 0)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=1452516593]
+shape = SubResource("BoxShape3D_lgp2p")

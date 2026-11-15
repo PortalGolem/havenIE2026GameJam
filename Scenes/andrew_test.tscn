@@ -15,7 +15,7 @@ sky = SubResource("Sky_lgp2p")
 [sub_resource type="BoxMesh" id="BoxMesh_2m7an"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2m7an"]
-size = Vector3(1, 35.49048, 610.9808)
+size = Vector3(1, 35.49048, 762.6012)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qf4af"]
 albedo_texture = ExtResource("2_o24f2")
@@ -34,7 +34,6 @@ sync_to_physics = false
 mouseSensitivity = 0.01
 groundSpeed = 50.0
 airSpeed = 8.0
-airDrag = 0.5
 airGravity = 1.5
 wallDrag = 0.5
 wallGravity = 1.0
@@ -90,7 +89,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.383832, 0, 71.14825)
 collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1278352760]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.121704, -6.2170715)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.121704, 69.59315)
 shape = SubResource("BoxShape3D_2m7an")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=233809153]

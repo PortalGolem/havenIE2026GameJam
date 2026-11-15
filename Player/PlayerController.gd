@@ -10,6 +10,7 @@ enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK, DASH}
 @export var airGravity:float
 @export var wallDrag:float
 @export var wallGravity:float
+@export var wallDistance:float
 @export var DashSpeed:float
 @export var initialMovementMode:MOVEMENT_MODE
 
@@ -17,18 +18,19 @@ enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK, DASH}
 @export var minYRotation:float
 @export var maxYRotation:float
 @export var jumpVector:Vector3
+@export var dashVector:Vector3
 
-@export var Camera_FOV_def = 70
+@export var Camera_FOV_def = 701
 @export var Camera_FOV = 70
 
 @export var Game_Speed = 1
 
 #dash variables
-@export var dash_time = 180
-@export var dash_timer = dash_time
-@export var dash_speed = 30
-@export var dash_lock_time = 120
-@export var dash_lock_timer = dash_lock_time
+@export var dash_time := 180.0
+@export var dash_timer := 0
+@export var dash_speed := 30.0
+@export var dash_lock_time := 120.0
+@export var dash_lock_timer := 0
 var dashing = false
 
 var stanima_max = 100
@@ -36,12 +38,13 @@ var stanima_max = 100
 var stanima_dash_cost = 10
 var stanima_jump_cost = 10
 var stanima_regeneration = 0.5
+var wallX = 0.0
 
 signal enemy_killed(id)
 
 
 var currentRotation := Vector2.ZERO
-var velocity := Vector3.ZERO
+var velocity := Vector3.FORWARD * 10
 
 var currentMovement:MOVEMENT_MODE
 
@@ -53,12 +56,13 @@ var startedAttack:bool = false
 var finishedAttack:bool = false
 var jumped:bool = false
 var dashed:bool = false
+var dashDirection:Vector3
 var movementLocked:bool = false
 var wallNormal:Vector3
 signal Lockin()
 signal UnLockin()
 
-@onready var Camera = $Camera3Dd
+@onready var Camera = $CameraPivot/Camera3D
 
 
 
@@ -82,74 +86,80 @@ func _input(event: InputEvent) -> void:
 			movementInput.y += 1.0
 		elif event.is_action_released("Backward"):
 			movementInput.y += -1.0
-		elif event.is_action_pressed("Attack"):
-			startedAttack = true
-		elif event.is_action_released("Attack"):
-			finishedAttack = true
+		#elif event.is_action_pressed("Attack"):
+		#	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		#	startedAttack = true
+		#elif event.is_action_released("Attack"):
+		#	finishedAttack = true
 		elif event.is_action_pressed("Jump"):
 			jumped = true
 		elif event.is_action_released("Jump"):
 			jumped = false
 		elif event.is_action_pressed("Dash"):
 			dashed = true
-		elif event.is_action_pressed("Dash"):
-			dashed = false
+		elif event.is_action_pressed("Settings"):
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentMovement = initialMovementMode
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	#STANIMA CODE
 	stanima += stanima_regeneration * delta
-	#TELL STANIMA BAR OUR STANIMA
-	$StanimaBar.Stanima = stanima
 	
-	
-	
-	print(mouseInput)
-	print(currentRotation)
-	print(mouseInput * mouseSensitivity)
-	currentRotation += mouseInput * mouseSensitivity
-	currentRotation.x = clampf(currentRotation.x, -deg_to_rad(maxXRotation), deg_to_rad(maxXRotation))
+	currentRotation += -mouseInput * mouseSensitivity
+	currentRotation.x = clampf(currentRotation.x, deg_to_rad(-maxXRotation + 180), deg_to_rad(maxXRotation + 180))
 	currentRotation.y = clampf(currentRotation.y, deg_to_rad(minYRotation), deg_to_rad(maxYRotation))
-	basis = Basis.IDENTITY
-	$CameraPivot.basis = Basis.IDENTITY
+	rotation = Vector3.ZERO
+	$CameraPivot.rotation = Vector3.ZERO
 	rotate(Vector3.UP, currentRotation.x)
 	$CameraPivot.rotate(Vector3.RIGHT, currentRotation.y)
 	mouseInput = Vector2.ZERO
-	
+	print(currentMovement)
 	if currentMovement == MOVEMENT_MODE.GROUND:
 		var movement = movementInput.normalized() * groundSpeed * delta
 		movement = Vector3(movement.x, 0, movement.y)
 		movement = movement.rotated(Vector3.UP, rotation.y)
 		position += movement
+		wallCollision = false
 	elif currentMovement == MOVEMENT_MODE.AIR:
 		# accept input left and right and change velocity
 		velocity.move_toward(Vector3.ZERO, delta * airDrag)
 		velocity += Vector3(delta * movementInput.x * airSpeed, 0, 0)
 		velocity.y -= airGravity * delta
-		position += velocity.rotated(Vector3.UP, rotation.y)
+		position += velocity.rotated(Vector3.UP, rotation.y) * delta
 		#Handle dash inputs
 		if dashed:
+			dashed = false
 			currentMovement = MOVEMENT_MODE.DASH
+		if wallCollision:
+			currentMovement = MOVEMENT_MODE.WALL
+			wallCollision = false
 	elif currentMovement == MOVEMENT_MODE.WALL:
 		velocity.x = 0
 		velocity.y -= wallGravity * delta
 		velocity.move_toward(Vector3.ZERO, wallDrag * delta)
 		
-		position += velocity
+		position += Vector3(velocity.x, velocity.y, -velocity.z) * delta
+		if (wallNormal.x > 0):
+			position.x = wallX - wallDistance
+		else:
+			position.x = wallX + wallDistance
 		if jumped:
 			if (wallNormal.x > 0):
 				velocity += jumpVector
 			else:
-				velocity += Vector3(-jumpVector.x, jumpVector.y, jumpVector.z)
+				velocity += Vector3(-jumpVector.x, jumpVector.y, -jumpVector.z)
 			currentMovement = MOVEMENT_MODE.AIR
 		#Handle dash inputs
 		if dashed:
+			dashed = false
 			currentMovement = MOVEMENT_MODE.DASH
+		wallCollision = false
 	elif currentMovement == MOVEMENT_MODE.ATTACK:
 		#Handle dash inputs
 		if dashed:
@@ -161,17 +171,24 @@ func _process(delta: float) -> void:
 			dash_lock_timer = dash_lock_time
 			dashing = true
 			
-			#GET CAMERA DIRECTION SO WE CAN NORMALIZE OUR MOVEMENT IN THE DIRECTION WE WANNA
+			#apparently this gets forwards.
+			dashDirection = -global_basis.z
+		
+		if wallCollision:
+			dashDirection = Vector3.BACK
 		
 		dash_lock_timer -= delta
 		if dash_lock_timer <= 0:
 			if wallCollision:
-				startWallMovement()
+				currentMovement = MOVEMENT_MODE.WALL
+				wallCollision = false
+			else:
+				currentMovement = MOVEMENT_MODE.AIR
 	
 	#DASH MOVEMENT CODE
 	if dash_timer > 0:
 		dash_timer -= delta
-		#USE CAMERA DIRECTION TO DEFINE WHERE HE MOVES EACH FRAME
+		position += dashDirection * DashSpeed * delta
 	else:
 		dashing = false
 	
@@ -192,12 +209,12 @@ func _process(delta: float) -> void:
 		var slow_speed = 0.01
 		var slow_max = 0.2
 		
-		Game_Speed -= slow_speed * delta
-		Game_Speed = clamp(Game_Speed, 1 - slow_max, 1)
+		#Game_Speed -= slow_speed * delta
+		#Game_Speed = clamp(Game_Speed, 1 - slow_max, 1)
 		
 		#camera FOV tween
-		Camera_FOV += (Camera_FOV * zoom_in_speed)
-		Camera_FOV = clamp(Camera_FOV, zoom_in_max, 1000)
+		#Camera_FOV += (Camera_FOV * zoom_in_speed)
+		#Camera_FOV = clamp(Camera_FOV, zoom_in_max, 1000)
 		
 		#FIND THE ENEMY WE ARE LOOKING AT AND STORE IT.
 		
@@ -208,13 +225,18 @@ func _process(delta: float) -> void:
 		UnLockin.emit()
 		Game_Speed = 1
 		Camera_FOV = Camera_FOV_def
-		currentMovement = MOVEMENT_MODE.ATTACK
+	#	currentMovement = MOVEMENT_MODE.ATTACK
 	
 	#CAMERA DYNAMIC FOV CODE GO HERE
 	
 	
 	#Camera.FOV = Camera_FOV
-	Engine.time_scale = Game_Speed
+	#Engine.time_scale = Game_Speed
 	
-func startWallMovement():
+func _playerEnterWallCollider(wall:Node3D):
+	print("WALL!")
+	wallNormal = wall.position - position
+	wallX = wall.position.x
+	wallCollision = true
+func _playerEnterFloorCollider(floor:Node3D):
 	pass

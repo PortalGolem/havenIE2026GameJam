@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://8hlhckm8cqeu"]
+
+[ext_resource type="PackedScene" uid="uid://byque4w54oowj" path="res://Player/player.tscn" id="1_qf4af"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2m7an"]
+
+[sub_resource type="Sky" id="Sky_lgp2p"]
+sky_material = SubResource("ProceduralSkyMaterial_2m7an")
+
+[sub_resource type="Environment" id="Environment_2m7an"]
+background_mode = 2
+sky = SubResource("Sky_lgp2p")
+
+[sub_resource type="BoxMesh" id="BoxMesh_2m7an"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2m7an"]
+size = Vector3(1, 35.49048, 71.45166)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lgp2p"]
+size = Vector3(1, 35.49048, 71.45166)
+
+[node name="AndrewTest" type="Node3D" unique_id=1684309353]
+
+[node name="Player" parent="." unique_id=1169010544 instance=ExtResource("1_qf4af")]
+sync_to_physics = false
+mouseSensitivity = 0.01
+groundSpeed = 50.0
+airSpeed = 4.0
+airDrag = 1.0
+airGravity = 3.0
+wallDrag = 1.0
+wallGravity = 1.0
+wallDistance = 1.0
+DashSpeed = 10.0
+initialMovementMode = 1
+maxXRotation = 45.0
+minYRotation = -30.0
+maxYRotation = 45.0
+jumpVector = Vector3(10, 5, 25)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=790657928]
+environment = SubResource("Environment_2m7an")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1342593935]
+transform = Transform3D(0.90468735, 0.30894443, 0.29341793, -0.426076, 0.6559819, 0.6230144, 0, -0.6886516, 0.72509235, 0, 4.381582, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=985476894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2094313, 0)
+mesh = SubResource("BoxMesh_2m7an")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2" unique_id=1205597703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1852422, -22.310482)
+mesh = SubResource("BoxMesh_2m7an")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D2" unique_id=378558453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1852422, -22.310482)
+mesh = SubResource("BoxMesh_2m7an")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D2/MeshInstance3D2" unique_id=1096299195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1852422, -22.310482)
+mesh = SubResource("BoxMesh_2m7an")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D2/MeshInstance3D2/MeshInstance3D2" unique_id=1051157976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1852422, -22.310482)
+mesh = SubResource("BoxMesh_2m7an")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1180970716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4880176, 0, 71.14825)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=386263992]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.121704, -35.22583)
+shape = SubResource("BoxShape3D_2m7an")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1184644732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 14.662356, 4.7683716e-07, -6.121704, -35.22583)
+mesh = SubResource("BoxMesh_lgp2p")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1428037372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.383832, 0, 71.14825)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1278352760]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.121704, -35.22583)
+shape = SubResource("BoxShape3D_2m7an")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=233809153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 14.662356, 0, -6.121704, -35.22583)
+mesh = SubResource("BoxMesh_lgp2p")

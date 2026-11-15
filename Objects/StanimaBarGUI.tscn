@@ -14,19 +14,22 @@ border_color = Color(1, 1, 1, 1)
 
 [node name="StanimaBar" type="Control" unique_id=1967122980]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = 1.0
-offset_right = -1.0
-offset_bottom = 1.0
+offset_left = -144.0
+offset_top = 541.00006
+offset_right = 49.918945
+offset_bottom = -34.702637
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.48, 1.48)
 script = ExtResource("1_3megg")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1066422025]
-skew = 0.7853982
+scale = Vector2(1, 0.99999994)
+skew = 0.7853981
 
 [node name="ColorRect" type="ColorRect" parent="Node2D" unique_id=677128687]
 offset_left = 23.999998

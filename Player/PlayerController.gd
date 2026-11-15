@@ -141,7 +141,7 @@ func _physics_process(delta: float) -> void:
 	elif currentMovement == MOVEMENT_MODE.WALL:
 		velocity.x = 0
 		velocity.y -= wallGravity * delta
-		velocity.move_toward(Vector3.ZERO, wallDrag * delta)
+		velocity.move_toward(Vector3.BACK * minZVelocity, wallDrag * delta)
 		position += Vector3(velocity.x, velocity.y, -velocity.z) * delta
 		if (wallNormal.x > 0):
 			position.x = wallX - wallDistance
@@ -167,7 +167,7 @@ func _physics_process(delta: float) -> void:
 		if wallCollision:
 			dashDirection = Vector3.BACK
 		
-		dash_lock_timer -= delta
+		dash_lock_timer -= deltaa
 		if dash_lock_timer <= 0:
 			if wallCollision:
 				currentMovement = MOVEMENT_MODE.WALL

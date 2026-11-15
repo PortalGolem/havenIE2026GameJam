@@ -16,7 +16,7 @@ size = Vector3(155.50922, 134.05064, 5.2768555)
 
 [node name="WallTerrain_Large" unique_id=244975756 instance=ExtResource("1_t1m1x")]
 
-[node name="WallTerrain_Large" parent="." index="0" unique_id=645034693]
+[node name="WallTerrain_Large" parent="." index="0" unique_id=1675737566]
 surface_material_override/0 = SubResource("StandardMaterial3D_80hoq")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1160030490]

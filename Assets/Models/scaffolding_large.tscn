@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dwmjji4rgwwhq"]
 
-[ext_resource type="PackedScene" uid="uid://dy1k8lusum2ti" path="res://Objects/FBX Files/ScaffoldingLarge.fbx" id="1_pq6nb"]
+[ext_resource type="PackedScene" uid="uid://dy1k8lusum2ti" path="res://Assets/FBX Files/ScaffoldingLarge.fbx" id="1_pq6nb"]
 [ext_resource type="Texture2D" uid="uid://cgjno8wk6lk6e" path="res://Materials/Textures/Scaffolding Large/Scaffolding_Large_Color.png" id="2_i2ksu"]
 [ext_resource type="Texture2D" uid="uid://cj1b0kc5bd3u1" path="res://Materials/Textures/Scaffolding Large/Scaffolding_Large_Normal.png" id="3_2yfhn"]
 [ext_resource type="Texture2D" uid="uid://cn5eixrcx3e4v" path="res://Materials/Textures/Scaffolding Large/Scaffolding_Large_Roughness.png" id="4_3x3e6"]
@@ -11,7 +11,29 @@ roughness_texture = ExtResource("4_3x3e6")
 normal_enabled = true
 normal_texture = ExtResource("3_2yfhn")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_6u7lg"]
+size = Vector3(12.375414, 0.2848816, 31.751984)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mka0s"]
+size = Vector3(25.679125, 0.2848816, 56.987152)
+
 [node name="ScaffoldingLarge" unique_id=90800242 instance=ExtResource("1_pq6nb")]
 
-[node name="Scaffolding_Indent_002" parent="." index="0" unique_id=1784513359]
+[node name="Scaffolding_Indent_002" parent="." index="0" unique_id=225538574]
 surface_material_override/0 = SubResource("StandardMaterial3D_yywe8")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="." index="1" unique_id=570002766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.21265, 0, 0)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4" index="0" unique_id=932188843]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.745327, 2.1968842, -2.9398422)
+shape = SubResource("BoxShape3D_6u7lg")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="." index="2" unique_id=1492831363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.21265, -15.558409, 0)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5" index="0" unique_id=911537854]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.082982, 2.1968842, 3.578578)
+shape = SubResource("BoxShape3D_mka0s")

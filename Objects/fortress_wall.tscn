@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cboce0h5dut80"]
+
+[ext_resource type="PackedScene" uid="uid://b6mwo7gc1imka" path="res://Objects/FBX Files/FortressWall.fbx" id="1_5fpni"]
+[ext_resource type="Texture2D" uid="uid://dnbrywea7oakp" path="res://Materials/Textures/Fortress Wall/Fortress_Wall_Color.png" id="2_kdb04"]
+[ext_resource type="Texture2D" uid="uid://b6kbddpj2xdj" path="res://Materials/Textures/Fortress Wall/Fortress_Wall_Normal.png" id="3_o6ikc"]
+[ext_resource type="Texture2D" uid="uid://uumqy6s7pq1n" path="res://Materials/Textures/Fortress Wall/Fortress_Wall_Roughness.png" id="4_qowe5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_016br"]
+albedo_texture = ExtResource("2_kdb04")
+roughness_texture = ExtResource("4_qowe5")
+normal_enabled = true
+normal_texture = ExtResource("3_o6ikc")
+
+[node name="FortressWall" unique_id=1340503585 instance=ExtResource("1_5fpni")]
+
+[node name="Fortress_Wall" parent="." index="0" unique_id=269696847]
+surface_material_override/0 = SubResource("StandardMaterial3D_016br")

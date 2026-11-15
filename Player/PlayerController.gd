@@ -118,8 +118,12 @@ func _input(event: InputEvent) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#state_machine = $Animator
+	Engine.time_scale = 1.0
 	
+	#for child in $Animator.get_children():
+	#	if child is AnimationTree:
+	#		print(child)
+	#		break
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentMovement = initialMovementMode
 
@@ -300,9 +304,9 @@ func findByClass(node: Node, className : String, result : Array) -> void:
 	
 func check_dash():
 	if dashed && stanima > stanima_dash_cost:
-			stanima -= stanima_dash_cost
-			dashed = false
-			currentMovement = MOVEMENT_MODE.DASH
+		stanima -= stanima_dash_cost
+		dashed = false
+		currentMovement = MOVEMENT_MODE.DASH
 func check_wall():
 	if wallCollision:
 			currentMovement = MOVEMENT_MODE.WALL
@@ -335,16 +339,18 @@ func move_towards_tripple_vector(target:Vector3, startingPosition:Vector3, ammou
 
 func check_wall_jump():
 	if jumped && stanima > stanima_jump_cost:
-			stanima -= stanima_jump_cost
-			velocity.y = 0
-			if (wallNormal.x > 0):
-				velocity += Vector3(-jumpVector.x, jumpVector.y, -jumpVector.z)
-			else:
-				velocity += Vector3(jumpVector.x, jumpVector.y, -jumpVector.z)
-			currentMovement = MOVEMENT_MODE.AIR
+		jumped = false
+		stanima -= stanima_jump_cost
+		velocity.y = 0
+		if (wallNormal.x > 0):
+			velocity += Vector3(-jumpVector.x, jumpVector.y, -jumpVector.z)
+		else:
+			velocity += Vector3(jumpVector.x, jumpVector.y, -jumpVector.z)
+		currentMovement = MOVEMENT_MODE.AIR
 
 func check_double_jump():
 	if jumped && stanima > stanima_jump_cost:
-			stanima -= stanima_jump_cost
-			velocity.y = 0
-			velocity += Vector3(doubleJumpVector.x, doubleJumpVector.y, -doubleJumpVector.z)
+		jumped = false
+		stanima -= stanima_jump_cost
+		velocity.y = 0
+		velocity += Vector3(doubleJumpVector.x, doubleJumpVector.y, -doubleJumpVector.z)

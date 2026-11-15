@@ -77,13 +77,13 @@ func _input(event: InputEvent) -> void:
 		elif event.is_action_released("Forward"):
 			movementInput.y += 1.0
 		elif event.is_action_pressed("Left"):
-			movementInput.x += -1.0
+			movementInput.x += 1.0
 		elif event.is_action_released("Left"):
-			movementInput.x += 1.0
-		elif event.is_action_pressed("Right"):
-			movementInput.x += 1.0
-		elif event.is_action_released("Right"):
 			movementInput.x += -1.0
+		elif event.is_action_pressed("Right"):
+			movementInput.x += -1.0
+		elif event.is_action_released("Right"):
+			movementInput.x += 1.0
 		elif event.is_action_pressed("Backward"):
 			movementInput.y += 1.0
 		elif event.is_action_released("Backward"):
@@ -230,7 +230,10 @@ func _physics_process(delta: float) -> void:
 	#Engine.time_scale = Game_Speed
 	
 func _playerEnterWallCollider(wall:Node3D):
-	print("WALL!")
+	if (wallNormal.x > 0):
+		position.x = wallX - wallDistance
+	else:
+		position.x = wallX + wallDistance
 	wallNormal = wall.position - position
 	wallX = wall.position.x
 	

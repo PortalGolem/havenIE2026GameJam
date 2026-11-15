@@ -4,19 +4,18 @@
 [ext_resource type="PackedScene" uid="uid://dl06wuwytb8l1" path="res://Objects/StanimaBarGUI.tscn" id="2_4ntmi"]
 [ext_resource type="PackedScene" uid="uid://chkuemajlf13r" path="res://Objects/SnowfallParticles.tscn" id="3_btcbx"]
 [ext_resource type="PackedScene" uid="uid://c20ilkhh6re64" path="res://Objects/death_screen.tscn" id="4_gwnis"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_2m7an"]
+[ext_resource type="PackedScene" uid="uid://gtcuylkxqpki" path="res://Assets/Animations/PlayerAnimations.tscn" id="5_k53q1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2m7an"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lgp2p"]
 radius = 0.49518242
 
-[sub_resource type="QuadMesh" id="QuadMesh_gwnis"]
+[sub_resource type="QuadMesh" id="QuadMesh_k53q1"]
 resource_local_to_scene = true
 size = Vector2(0.1, 0.1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_k53q1"]
+[sub_resource type="QuadMesh" id="QuadMesh_fhl08"]
 resource_local_to_scene = true
 size = Vector2(0.1, 0.1)
 
@@ -24,9 +23,6 @@ size = Vector2(0.1, 0.1)
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_l8h54")
 stanima = 74
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=414659512]
-mesh = SubResource("SphereMesh_2m7an")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1339017187]
 shape = SubResource("SphereShape3D_2m7an")
@@ -53,14 +49,17 @@ shape = SubResource("SphereShape3D_lgp2p")
 
 [node name="GPUParticles3D" parent="." unique_id=202149827 instance=ExtResource("3_btcbx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.188319, 7.9178877, -21.797134)
-draw_pass_1 = SubResource("QuadMesh_gwnis")
+draw_pass_1 = SubResource("QuadMesh_k53q1")
 
 [node name="GPUParticles3D" parent="GPUParticles3D" unique_id=1645496788 instance=ExtResource("3_btcbx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0007638931, 0.002453804, -70.15349)
-draw_pass_1 = SubResource("QuadMesh_k53q1")
+draw_pass_1 = SubResource("QuadMesh_fhl08")
 
 [node name="DeathScreen" parent="." unique_id=371659971 instance=ExtResource("4_gwnis")]
 modulate = Color(1, 1, 1, 0)
+
+[node name="Animator" parent="." unique_id=2124482649 instance=ExtResource("5_k53q1")]
+transform = Transform3D(-0.23000003, 0, -1.7145661e-08, 0, 0.23, 0, 1.7145661e-08, 0, -0.23000003, 0, 0, 0)
 
 [connection signal="body_entered" from="WallCollider" to="." method="_playerEnterWallCollider"]
 [connection signal="body_entered" from="FloorCollider" to="." method="_playerEnterFloorCollider"]

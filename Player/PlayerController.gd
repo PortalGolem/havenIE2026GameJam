@@ -77,13 +77,13 @@ func _input(event: InputEvent) -> void:
 		elif event.is_action_released("Forward"):
 			movementInput.y += 1.0
 		elif event.is_action_pressed("Left"):
-			movementInput.x += -1.0
+			movementInput.x += 1.0
 		elif event.is_action_released("Left"):
-			movementInput.x += 1.0
-		elif event.is_action_pressed("Right"):
-			movementInput.x += 1.0
-		elif event.is_action_released("Right"):
 			movementInput.x += -1.0
+		elif event.is_action_pressed("Right"):
+			movementInput.x += -1.0
+		elif event.is_action_released("Right"):
+			movementInput.x += 1.0
 		elif event.is_action_pressed("Backward"):
 			movementInput.y += 1.0
 		elif event.is_action_released("Backward"):

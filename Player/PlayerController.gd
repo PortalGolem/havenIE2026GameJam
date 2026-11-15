@@ -2,9 +2,13 @@ extends AnimatableBody3D
 
 # the player has movement modes for each controll scheme.
 
-enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK}
+enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK, DASH}
 @export var mouseSensitivity:float 
 @export var groundSpeed:float
+@export var airSpeed:float
+@export var airDrag:float
+@export var airGravity:float
+@export var DashSpeed:float
 @export var initialMovementMode:MOVEMENT_MODE
 
 @export var maxXRotation:float
@@ -12,13 +16,18 @@ enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK}
 @export var maxYRotation:float
 
 var currentRotation := Vector2.ZERO
+var velocity := Vector3.ZERO
 
 var currentMovement:MOVEMENT_MODE
+
+
 var mouseInput := Vector2.ZERO
 var movementInput := Vector2.ZERO
 var startedAttack:bool = false
 var finishedAttack:bool = false
 var jumped:bool = false
+var dashed:bool = false
+var movementLocked:bool = false
 signal Lockin()
 signal UnLockin()
 
@@ -55,6 +64,10 @@ func _input(event: InputEvent) -> void:
 			jumped = true
 		elif event.is_action_released("Jump"):
 			jumped = false
+		elif event.is_action_pressed("Dash"):
+			dashed = true
+		elif event.is_action_pressed("Dash"):
+			dashed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -82,11 +95,24 @@ func _process(delta: float) -> void:
 		movement = movement.rotated(Vector3.UP, rotation.y)
 		position += movement
 	elif currentMovement == MOVEMENT_MODE.AIR:
-		pass
+		# accept input left and right and change velocity
+		velocity.move_toward(Vector3.ZERO, delta * airDrag)
+		velocity += Vector3(delta * movementInput.x * airSpeed, 0, 0)
+		velocity.y -= airGravity * delta
+		position += velocity.rotated(Vector3.UP, rotation.y)
+		#Handle dash inputs
+		if dashed:
+			currentMovement = MOVEMENT_MODE.DASH
 	elif currentMovement == MOVEMENT_MODE.WALL:
-		pass
+		#Handle dash inputs
+		if dashed:
+			currentMovement = MOVEMENT_MODE.DASH
 	elif currentMovement == MOVEMENT_MODE.ATTACK:
-		pass
+		#Handle dash inputs
+		if dashed:
+			currentMovement = MOVEMENT_MODE.DASH
+	elif currentMovement == MOVEMENT_MODE.DASH:
+		
 	
 	#attack code
 	if startedAttack == true:

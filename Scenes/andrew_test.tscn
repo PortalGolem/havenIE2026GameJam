@@ -19,6 +19,10 @@ sky = SubResource("Sky_lgp2p")
 sync_to_physics = false
 mouseSensitivity = 0.01
 groundSpeed = 50.0
+airSpeed = 1.0
+airDrag = 0.01
+airGravity = 0.001
+initialMovementMode = 1
 maxXRotation = 45.0
 minYRotation = -30.0
 maxYRotation = 45.0
@@ -31,4 +35,20 @@ transform = Transform3D(0.90468735, 0.30894443, 0.29341793, -0.426076, 0.6559819
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=985476894]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1852422, 0)
+mesh = SubResource("BoxMesh_2m7an")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2" unique_id=1205597703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1852422, -22.310482)
+mesh = SubResource("BoxMesh_2m7an")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D2" unique_id=378558453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1852422, -22.310482)
+mesh = SubResource("BoxMesh_2m7an")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D2/MeshInstance3D2" unique_id=1096299195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1852422, -22.310482)
+mesh = SubResource("BoxMesh_2m7an")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D2/MeshInstance3D2/MeshInstance3D2" unique_id=1051157976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1852422, -22.310482)
 mesh = SubResource("BoxMesh_2m7an")

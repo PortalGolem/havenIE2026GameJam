@@ -18,6 +18,7 @@ enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK, DASH}
 @export var minYRotation:float
 @export var maxYRotation:float
 @export var jumpVector:Vector3
+@export var doubleJumpVector:Vector3
 @export var dashVector:Vector3
 
 @export var Camera_FOV_def = 701
@@ -71,6 +72,7 @@ var runFinishedAttack := false
 var finalTargetEnemyPosition:Vector3
 var finalTargetEnemyID:int
 var died = false
+var state_machine:AnimationNodeStateMachinePlayback
 @export var enemySize:float
 
 @onready var Camera = $CameraPivot/Camera3D
@@ -111,10 +113,13 @@ func _input(event: InputEvent) -> void:
 		elif event.is_action_pressed("Settings"):
 			if died:
 				get_tree().change_scene_to_file("res://Scenes/Main.tscn")
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			else:
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#state_machine = $Animator
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentMovement = initialMovementMode
 
@@ -152,6 +157,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= airGravity * delta
 		position += Vector3(velocity.x, velocity.y, -velocity.z) * delta
 		#Handle dash inputs
+		check_double_jump()
 		check_dash()
 		check_wall()
 	elif currentMovement == MOVEMENT_MODE.WALL:
@@ -331,6 +337,17 @@ func check_wall_jump():
 	if jumped && stanima > stanima_jump_cost:
 			stanima -= stanima_jump_cost
 			velocity.y = 0
+			if (wallNormal.x > 0):
+				velocity += Vector3(-jumpVector.x, jumpVector.y, -jumpVector.z)
+			else:
+				velocity += Vector3(jumpVector.x, jumpVector.y, -jumpVector.z)
+			currentMovement = MOVEMENT_MODE.AIR
+
+func check_double_jump():
+	if jumped && stanima > stanima_jump_cost:
+			stanima -= stanima_jump_cost
+			velocity.y = 0
+			velocity += Vector3(doubleJumpVector.x, doubleJumpVector.y, -doubleJumpVector.z)
 			if (wallNormal.x > 0):
 				velocity += Vector3(-jumpVector.x, jumpVector.y, -jumpVector.z)
 			else:

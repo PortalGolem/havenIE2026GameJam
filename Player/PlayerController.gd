@@ -242,6 +242,7 @@ func check_dash():
 	if dashed && stanima > stanima_dash_cost:
 			stanima -= stanima_dash_cost
 			dashed = false
+			currentMovement = MOVEMENT_MODE.DASH
 func check_wall():
 	if wallCollision:
 			currentMovement = MOVEMENT_MODE.WALL

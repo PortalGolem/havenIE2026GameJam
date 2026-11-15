@@ -97,4 +97,4 @@ minYRotation = -30.0
 maxYRotation = 45.0
 jumpVector = Vector3(10, 5, 25)
 dashVector = Vector3(1, 1, 1)
-stanima = 10
+stanima = 100

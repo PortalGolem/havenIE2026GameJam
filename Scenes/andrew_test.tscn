@@ -34,6 +34,7 @@ sync_to_physics = false
 mouseSensitivity = 0.01
 groundSpeed = 50.0
 airSpeed = 8.0
+airDrag = Vector3(0.5, 0, -3)
 airGravity = 1.5
 wallDrag = 0.5
 wallGravity = 1.0
@@ -45,6 +46,7 @@ minYRotation = -30.0
 maxYRotation = 45.0
 jumpVector = Vector3(10, 5, 25)
 dashVector = Vector3(0, 3, 20)
+minZVelocity = -1.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=790657928]
 environment = SubResource("Environment_2m7an")

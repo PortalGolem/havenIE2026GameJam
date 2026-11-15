@@ -168,7 +168,7 @@ func _physics_process(delta: float) -> void:
 		if wallCollision:
 			dashDirection = Vector3.BACK
 		
-		dash_lock_timer -= deltaa
+		dash_lock_timer -= delta
 		if dash_lock_timer <= 0:
 			if wallCollision:
 				currentMovement = MOVEMENT_MODE.WALL

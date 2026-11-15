@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cvfv4xmrfwd7e"
-path="res://.godot/imported/WallTerrain_Large.fbx-ae41204693cd31bec0de6a3809f4fa82.scn"
+uid="uid://dtqp3221jso3v"
+path="res://.godot/imported/AlaskanMan_BaseMesh.fbx-58579655c3a38ae2736be46087912337.scn"
 
 [deps]
 
-source_file="res://Objects/FBX Files/WallTerrain_Large.fbx"
-dest_files=["res://.godot/imported/WallTerrain_Large.fbx-ae41204693cd31bec0de6a3809f4fa82.scn"]
+source_file="res://Assets/FBX Files/AlaskanMan_BaseMesh.fbx"
+dest_files=["res://.godot/imported/AlaskanMan_BaseMesh.fbx-58579655c3a38ae2736be46087912337.scn"]
 
 [params]
 

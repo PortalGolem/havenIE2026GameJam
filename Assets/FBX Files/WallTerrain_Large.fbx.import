@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cpyai5ek6p4dj"
-path="res://.godot/imported/FortressLarge.fbx-3652930d6ab53c4f6daf8086ab1386f7.scn"
+uid="uid://cvfv4xmrfwd7e"
+path="res://.godot/imported/WallTerrain_Large.fbx-204923fd44d0ebe30d43c35ee3603aae.scn"
 
 [deps]
 
-source_file="res://Objects/FBX Files/FortressLarge.fbx"
-dest_files=["res://.godot/imported/FortressLarge.fbx-3652930d6ab53c4f6daf8086ab1386f7.scn"]
+source_file="res://Assets/FBX Files/WallTerrain_Large.fbx"
+dest_files=["res://.godot/imported/WallTerrain_Large.fbx-204923fd44d0ebe30d43c35ee3603aae.scn"]
 
 [params]
 

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dl0ogjepyakvw"
-path="res://.godot/imported/Fortress_Passage.fbx-1cb2c57e7d173f05ec60e63311d7bbf9.scn"
+path="res://.godot/imported/Fortress_Passage.fbx-13bd4ce38eabd8def739109b0507a072.scn"
 
 [deps]
 
-source_file="res://Objects/FBX Files/Fortress_Passage.fbx"
-dest_files=["res://.godot/imported/Fortress_Passage.fbx-1cb2c57e7d173f05ec60e63311d7bbf9.scn"]
+source_file="res://Assets/FBX Files/Fortress_Passage.fbx"
+dest_files=["res://.godot/imported/Fortress_Passage.fbx-13bd4ce38eabd8def739109b0507a072.scn"]
 
 [params]
 

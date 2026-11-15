@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dy1k8lusum2ti"
-path="res://.godot/imported/ScaffoldingLarge.fbx-ea5bfbefe84b2e6aa3e008cd488c9ec1.scn"
+uid="uid://b4caetw8ywc3d"
+path="res://.godot/imported/WallTerrain_Medium_Indent.fbx-a66c494b944c05cb2c7e399459ddc55e.scn"
 
 [deps]
 
-source_file="res://Objects/FBX Files/ScaffoldingLarge.fbx"
-dest_files=["res://.godot/imported/ScaffoldingLarge.fbx-ea5bfbefe84b2e6aa3e008cd488c9ec1.scn"]
+source_file="res://Assets/FBX Files/WallTerrain_Medium_Indent.fbx"
+dest_files=["res://.godot/imported/WallTerrain_Medium_Indent.fbx-a66c494b944c05cb2c7e399459ddc55e.scn"]
 
 [params]
 

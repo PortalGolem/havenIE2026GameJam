@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://drh2rjptdbcxr"]
+
+[ext_resource type="Texture2D" uid="uid://cb8hq10pjb5o2" path="res://Materials/Textures/Fortress Passage/Fortress_Passage_Color.png" id="1_eadxg"]
+[ext_resource type="Texture2D" uid="uid://bdkw41fya518e" path="res://Materials/Textures/Fortress Passage/Fortress_Passage_Normal.png" id="2_f5b84"]
+[ext_resource type="Texture2D" uid="uid://chg4kitovyan3" path="res://Materials/Textures/Fortress Passage/Fortress_Passage_Roughness.png" id="3_8qpow"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpsyg"]
+albedo_texture = ExtResource("1_eadxg")
+roughness_texture = ExtResource("3_8qpow")
+normal_enabled = true
+normal_texture = ExtResource("2_f5b84")
+
+[node name="Fortress_Passage" unique_id=1157807438]
+
+[node name="Fortress_Thing" parent="." index="0" unique_id=1042501144]
+surface_material_override/0 = SubResource("StandardMaterial3D_wpsyg")

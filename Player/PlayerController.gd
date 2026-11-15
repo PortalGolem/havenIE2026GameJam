@@ -39,6 +39,8 @@ var stanima_max = 100
 @export var stanima_dash_cost = 10
 @export var stanima_jump_cost = 10
 @export var stanima_regeneration = 3.5
+@export var deathTime:float = 3
+var deathTimer:= 0.0
 var wallX = 0.0
 
 signal enemy_killed(id)
@@ -107,6 +109,8 @@ func _input(event: InputEvent) -> void:
 		elif event.is_action_pressed("Dash"):
 			dashed = true
 		elif event.is_action_pressed("Settings"):
+			if died:
+				get_tree().change_scene_to_file("res://Scenes/Main.tscn")
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 # Called when the node enters the scene tree for the first time.
@@ -117,6 +121,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	
+	if died and deathTimer < deathTime:
+		deathTimer += delta
+		$DeathScreen.modulate = Color(255, 255, 255, deathTimer/deathTime)
+		Engine.time_scale = 1 - deathTimer/deathTime
 	#STANIMA CODE
 	stanima += stanima_regeneration * delta
 	$StanimaBar.Stanima = stanima
@@ -275,7 +284,7 @@ func _playerEnterWallCollider(wall:Node3D):
 	
 	wallCollision = true
 func _playerEnterFloorCollider(floor:Node3D):
-	pass
+	died = true
 	
 func findByClass(node: Node, className : String, result : Array) -> void:
 	if node.is_class(className) :

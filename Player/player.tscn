@@ -15,10 +15,6 @@ radius = 0.49518242
 resource_local_to_scene = true
 size = Vector2(0.1, 0.1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_gwnis"]
-resource_local_to_scene = true
-size = Vector2(0.1, 0.1)
-
 [node name="Player" type="AnimatableBody3D" unique_id=944310348]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_l8h54")
@@ -52,11 +48,8 @@ shape = SubResource("SphereShape3D_lgp2p")
 
 [node name="GPUParticles3D" parent="." unique_id=202149827 instance=ExtResource("3_btcbx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.188319, 7.9178877, -21.797134)
+amount = 600
 draw_pass_1 = SubResource("QuadMesh_btcbx")
-
-[node name="GPUParticles3D" parent="GPUParticles3D" unique_id=1645496788 instance=ExtResource("3_btcbx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0007638931, 0.002453804, -70.15349)
-draw_pass_1 = SubResource("QuadMesh_gwnis")
 
 [connection signal="body_entered" from="WallCollider" to="." method="_playerEnterWallCollider"]
 [connection signal="body_entered" from="FloorCollider" to="." method="_playerEnterFloorCollider"]

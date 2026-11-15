@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cu137gx5om4ft"]
 
-[ext_resource type="PackedScene" uid="uid://de2w0eb1740di" path="res://Objects/FBX Files/WallTerrain_Small.fbx" id="1_ykmy4"]
+[ext_resource type="PackedScene" uid="uid://de2w0eb1740di" path="res://Assets/FBX Files/WallTerrain_Small.fbx" id="1_ykmy4"]
 [ext_resource type="Texture2D" uid="uid://yuq2k4g80lyk" path="res://Materials/Textures/Wall Terain Small/Wall_Terrain_Small_Color.png" id="2_jedfc"]
 [ext_resource type="Texture2D" uid="uid://jmpu7umjkrpf" path="res://Materials/Textures/Wall Terain Small/Wall_Terrain_Small_Normal.png" id="3_un3ur"]
 [ext_resource type="Texture2D" uid="uid://dsh3bna5adbpu" path="res://Materials/Textures/Wall Terain Small/Wall_Terrain_Small_Roughness.png" id="4_1qvlw"]
@@ -11,7 +11,17 @@ roughness_texture = ExtResource("4_1qvlw")
 normal_enabled = true
 normal_texture = ExtResource("3_un3ur")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_6faft"]
+size = Vector3(52.601807, 119.75745, 5.861374)
+
 [node name="WallTerrain_Small" unique_id=1170897990 instance=ExtResource("1_ykmy4")]
 
-[node name="WallTerrain_Small" parent="." index="0" unique_id=379540354]
+[node name="WallTerrain_Small" parent="." index="0" unique_id=313079723]
 surface_material_override/0 = SubResource("StandardMaterial3D_gcjfk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=2090828065]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1605770891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1138916, -19.408386, 2.430687)
+shape = SubResource("BoxShape3D_6faft")

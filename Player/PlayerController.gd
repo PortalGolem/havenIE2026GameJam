@@ -18,6 +18,20 @@ enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK, DASH}
 @export var maxYRotation:float
 @export var jumpVector:Vector3
 
+@export var Camera_FOV_def = 70
+@export var Camera_FOV = 70
+
+@export var Game_Speed = 1
+
+#dash variables
+@export var dash_time = 180
+@export var dash_timer = dash_time
+@export var dash_speed = 30
+@export var dash_lock_time = 120
+@export var dash_lock_timer = dash_lock_time
+var dashing = false
+
+
 var currentRotation := Vector2.ZERO
 var velocity := Vector3.ZERO
 
@@ -36,10 +50,8 @@ signal Lockin()
 signal UnLockin()
 
 @onready var Camera = $Camera3Dd
-var Camera_FOV_def = 70
-var Camera_FOV = 70
 
-var Game_Speed = 1
+
 
 
 func _input(event: InputEvent) -> void:
@@ -128,7 +140,27 @@ func _process(delta: float) -> void:
 		if dashed:
 			currentMovement = MOVEMENT_MODE.DASH
 	elif currentMovement == MOVEMENT_MODE.DASH:
+		#setup timers
+		if dashing == false:
+			dash_timer = dash_time
+			dash_lock_timer = dash_lock_time
+			dashing = true
+			
+			#GET CAMERA DIRECTION SO WE CAN NORMALIZE OUR MOVEMENT IN THE DIRECTION WE WANNA
+		
+		dash_lock_timer -= 1
+		#if dash_lock_timer <= 0:
+			#allow movement to other states
+		
 		pass
+	
+	#DASH MOVEMENT CODE
+	if dash_timer > 0:
+		dash_timer -= 1
+		#USE CAMERA DIRECTION TO DEFINE WHERE HE MOVES EACH FRAME
+	else:
+		dashing = false
+	
 	
 	#attack code
 	if startedAttack == true:

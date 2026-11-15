@@ -32,7 +32,7 @@ enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK, DASH}
 var dashing = false
 
 var stanima_max = 100
-var stanima_cur = 100
+@export var stanima = 100
 var stanima_dash_cost = 10
 var stanima_jump_cost = 10
 var stanima_regeneration = 0.5
@@ -103,8 +103,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#STANIMA CODE
-	stanima_cur += stanima_regeneration * delta
-	
+	stanima += stanima_regeneration * delta
+	#TELL STANIMA BAR OUR STANIMA
+	$StanimaBar.Stanima = stanima
 	
 	
 	
@@ -212,7 +213,7 @@ func _process(delta: float) -> void:
 	#CAMERA DYNAMIC FOV CODE GO HERE
 	
 	
-	Camera.FOV = Camera_FOV
+	#Camera.FOV = Camera_FOV
 	Engine.time_scale = Game_Speed
 	
 func startWallMovement():

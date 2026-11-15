@@ -1,44 +1,79 @@
 [gd_scene format=3 uid="uid://csgvpqtujtjra"]
 
-[ext_resource type="Texture2D" uid="uid://d1cv7ny36r1qq" path="res://Materials/Textures/Alaskan Man/EskimoMan_Color.png" id="1_i1xyy"]
+[ext_resource type="Texture2D" uid="uid://d1cv7ny36r1qq" path="res://Materials/Textures/Alaskan Man/EskimoMan_Color.png" id="1_tys3k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sv6px"]
-albedo_texture = ExtResource("1_i1xyy")
+albedo_texture = ExtResource("1_tys3k")
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_eus4h"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r2eeo"]
+animation = &"falling"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vjtwl"]
+animation = &"falling"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bdixm"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nuv3n"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pkr5l"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6faft"]
 states/BlendTree/node = SubResource("AnimationNodeBlendTree_eus4h")
 states/BlendTree/position = Vector2(547.19995, 87.02239)
-states/Start/position = Vector2(1.5999947, 87.67999)
-transitions = ["BlendTree", "End", SubResource("AnimationNodeStateMachineTransition_bdixm")]
-graph_offset = Vector2(-57, -156)
+states/Start/position = Vector2(-8.000006, 62.079994)
+states/falling/node = SubResource("AnimationNodeAnimation_vjtwl")
+states/falling/position = Vector2(125, -30.400002)
+"states/falling 2/node" = SubResource("AnimationNodeAnimation_r2eeo")
+"states/falling 2/position" = Vector2(196.79999, -86.8)
+transitions = ["BlendTree", "End", SubResource("AnimationNodeStateMachineTransition_bdixm"), "Start", "falling", SubResource("AnimationNodeStateMachineTransition_nuv3n"), "falling", "BlendTree", SubResource("AnimationNodeStateMachineTransition_pkr5l")]
+graph_offset = Vector2(-108, -186)
 
 [node name="AlaskanMan" unique_id=1040032646]
 
 [node name="Skeleton3D" parent="." index="0" unique_id=1643929753]
+bones/0/position = Vector3(1.0077269e-05, 2.0316377, -0.019078061)
+bones/0/rotation = Quaternion(4.490961e-07, 3.3190427e-06, 1.3084735e-05, 1)
+bones/1/rotation = Quaternion(-0.009354913, -3.1964871e-06, -1.3115212e-05, 0.99995625)
 bones/3/position = Vector3(0, 0.492004, -2.5919872e-10)
 bones/3/rotation = Quaternion(0, 0, 0, 1)
+bones/7/rotation = Quaternion(-0.58780223, -0.39189342, 0.5904701, -0.39019623)
 bones/8/position = Vector3(-8.977024e-11, 0.57988983, -6.9153234e-09)
+bones/8/rotation = Quaternion(-0.19809617, 0.0018032, 0.0019166127, 0.98017913)
 bones/9/position = Vector3(2.0639378e-10, 0.582723, -1.1110046e-10)
+bones/9/rotation = Quaternion(-1.5392902e-07, 4.788099e-05, 2.8917327e-07, 1)
 bones/10/position = Vector3(2.9813196e-10, 0.8212621, 2.8066247e-09)
+bones/10/rotation = Quaternion(-6.022751e-08, 0.00031644938, 4.0911073e-07, 1)
 bones/11/position = Vector3(1.7703297e-11, 0.042980157, 9.8294484e-11)
-bones/12/rotation = Quaternion(-1.3918445e-17, 6.505213e-19, 0, 1)
-bones/13/rotation = Quaternion(1.3877788e-17, -4.3368087e-19, 3.469447e-18, 1)
+bones/11/rotation = Quaternion(-3.4697297e-07, 0.0043868474, 3.8833247e-07, 0.9999904)
+bones/12/rotation = Quaternion(0.16445471, -7.3604284e-08, 0.108619675, 0.98038596)
+bones/13/rotation = Quaternion(-0.13760184, -0.006043805, -0.108170524, 0.98454475)
+bones/15/rotation = Quaternion(0.58569795, -0.39324096, 0.5925153, 0.3889024)
 bones/16/position = Vector3(2.3611912e-10, 0.57988983, -6.912268e-09)
+bones/16/rotation = Quaternion(-0.19802697, -0.0013403938, -0.005557598, 0.9801799)
 bones/17/position = Vector3(2.968007e-10, 0.5827351, 1.01845976e-10)
+bones/17/rotation = Quaternion(3.3042994e-07, -0.00011865289, -2.9580045e-07, 1)
 bones/18/position = Vector3(3.8837204e-11, 0.8212444, 3.4138026e-10)
+bones/18/rotation = Quaternion(1.4568836e-07, 0.00022490976, -1.8705268e-07, 1)
 bones/19/position = Vector3(5.2192403e-11, 0.06362236, -4.091214e-10)
+bones/19/rotation = Quaternion(1.4747033e-07, 0.0052525415, 1.5620026e-07, 0.99998623)
 bones/20/position = Vector3(-8.8125995e-10, 0.12175819, 1.1528478e-09)
-bones/20/rotation = Quaternion(2.7972416e-17, 0, 6.938894e-18, 1)
-bones/21/rotation = Quaternion(1.4094628e-17, -3.469447e-18, 6.938894e-18, 1)
+bones/20/rotation = Quaternion(0.16544674, -2.4496727e-09, -0.020984618, 0.9859955)
+bones/21/rotation = Quaternion(-0.1305655, 0.019785851, 0.07383151, 0.9884888)
+bones/23/rotation = Quaternion(0.00054969435, 0.019207207, 0.9997557, -0.010928012)
+bones/24/rotation = Quaternion(-0.06528224, 0.001373766, -0.024459561, 0.99756616)
 bones/25/position = Vector3(-1.6325896e-10, 0.81366265, -1.2420829e-09)
+bones/25/rotation = Quaternion(0.7211039, 0.03760946, -0.014616037, 0.691651)
 bones/26/position = Vector3(-5.0188514e-10, 0.10007639, 5.800782e-11)
+bones/28/rotation = Quaternion(0.00014609596, 0.0064425548, 0.9999192, 0.010965196)
 bones/29/position = Vector3(1.7901014e-11, 1.0127373, 4.881149e-10)
+bones/29/rotation = Quaternion(-0.052179538, -0.00091918436, 0.024492452, 0.998337)
 bones/30/position = Vector3(-1.9361085e-10, 0.81306726, -1.2162049e-09)
+bones/30/rotation = Quaternion(0.722464, -0.035538197, 0.012041429, 0.6903896)
 bones/31/position = Vector3(-1.4799384e-10, 0.10937735, 7.642775e-11)
 
 [node name="AlaskanMan_BaseMesh" parent="Skeleton3D" index="0" unique_id=1331404676]

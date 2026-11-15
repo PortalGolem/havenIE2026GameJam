@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://wfrrlste675b"
-path="res://.godot/imported/FortressSmall.fbx-4e260c02b2a0cca759c34ee14a92f113.scn"
+uid="uid://gixgyxtth1yf"
+path="res://.godot/imported/ScaffoldingLarge_Supports.fbx-3766e0b0f9a29edbe6415f526ef158ac.scn"
 
 [deps]
 
-source_file="res://Objects/FBX Files/FortressSmall.fbx"
-dest_files=["res://.godot/imported/FortressSmall.fbx-4e260c02b2a0cca759c34ee14a92f113.scn"]
+source_file="res://Assets/FBX Files/ScaffoldingLarge_Supports.fbx"
+dest_files=["res://.godot/imported/ScaffoldingLarge_Supports.fbx-3766e0b0f9a29edbe6415f526ef158ac.scn"]
 
 [params]
 

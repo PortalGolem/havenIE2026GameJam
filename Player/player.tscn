@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://byque4w54oowj"]
 
 [ext_resource type="Script" uid="uid://c423nqlkeyre6" path="res://Player/PlayerController.gd" id="1_l8h54"]
-[ext_resource type="PackedScene" uid="uid://dl06wuwytb8l1" path="res://Objects/StanimaBarGUI.tscn" id="2_4ntmi"]
-[ext_resource type="PackedScene" uid="uid://chkuemajlf13r" path="res://Objects/SnowfallParticles.tscn" id="3_btcbx"]
+[ext_resource type="PackedScene" uid="uid://dl06wuwytb8l1" path="res://Assets/Models/StanimaBarGUI.tscn" id="2_4ntmi"]
+[ext_resource type="PackedScene" uid="uid://chkuemajlf13r" path="res://Assets/Models/SnowfallParticles.tscn" id="3_btcbx"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_2m7an"]
 

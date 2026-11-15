@@ -1,5 +1,5 @@
 [gd_scene format=3 uid="uid://c0q2b7jd7iy8e"]
 
-[ext_resource type="PackedScene" uid="uid://xc8byqlll7jh" path="res://Objects/wall_terrain_medium_indent.tscn" id="1_qkdot"]
+[ext_resource type="PackedScene" uid="uid://xc8byqlll7jh" path="res://Assets/Models/wall_terrain_medium_indent.tscn" id="1_qkdot"]
 
 [node name="WallTerrain_Medium_Indent" unique_id=1221184382 instance=ExtResource("1_qkdot")]

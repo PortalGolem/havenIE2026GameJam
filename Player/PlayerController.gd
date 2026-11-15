@@ -143,13 +143,13 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		velocity.y -= wallGravity * delta
 		velocity.move_toward(Vector3.ZERO, wallDrag * delta)
-		
 		position += Vector3(velocity.x, velocity.y, -velocity.z) * delta
 		if (wallNormal.x > 0):
 			position.x = wallX - wallDistance
 		else:
 			position.x = wallX + wallDistance
 		if jumped:
+			velocity.y = 0
 			if (wallNormal.x > 0):
 				velocity += jumpVector
 			else:
@@ -190,6 +190,9 @@ func _physics_process(delta: float) -> void:
 		dash_timer -= delta
 		position += dashDirection * DashSpeed * delta
 	else:
+		velocity.y = 0
+		velocity.x = 0
+		velocity += jumpVector.rotated(Vector3.UP, rotation.y)
 		dashing = false
 	
 	
@@ -209,16 +212,14 @@ func _physics_process(delta: float) -> void:
 		var slow_speed = 0.01
 		var slow_max = 0.2
 		
-		#Game_Speed -= slow_speed * delta
-		#Game_Speed = clamp(Game_Speed, 1 - slow_max, 1)
+		Game_Speed -= slow_speed * delta
+		Game_Speed = clamp(Game_Speed, 1 - slow_max, 1)
 		
 		#camera FOV tween
-		#Camera_FOV += (Camera_FOV * zoom_in_speed)
-		#Camera_FOV = clamp(Camera_FOV, zoom_in_max, 1000)
+		Camera_FOV += (Camera_FOV * zoom_in_speed)
+		Camera_FOV = clamp(Camera_FOV, zoom_in_max, 1000)
 		
 		#FIND THE ENEMY WE ARE LOOKING AT AND STORE IT.
-		
-		
 		
 	#reset to and launch
 	if finishedAttack == true:
@@ -240,3 +241,9 @@ func _playerEnterWallCollider(wall:Node3D):
 	wallCollision = true
 func _playerEnterFloorCollider(floor:Node3D):
 	pass
+	
+func findByClass(node: Node, className : String, result : Array) -> void:
+	if node.is_class(className) :
+		result.push_back(node)
+	for child in node.get_children():
+		findByClass(child, className, result)

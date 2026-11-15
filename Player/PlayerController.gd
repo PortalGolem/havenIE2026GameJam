@@ -113,6 +113,7 @@ func _physics_process(delta: float) -> void:
 	#STANIMA CODE
 	stanima += stanima_regeneration * delta
 	$StanimaBar.Stanima = stanima
+	stanima = clamp(stanima, 0, stanima_max)
 	
 	currentRotation += -mouseInput * mouseSensitivity
 	currentRotation.x = clampf(currentRotation.x, deg_to_rad(-maxXRotation + 180), deg_to_rad(maxXRotation + 180))

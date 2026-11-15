@@ -31,6 +31,7 @@ var movementLocked:bool = false
 signal Lockin()
 signal UnLockin()
 
+@onready var Camera = $Camera3Dd
 var Camera_FOV_def = 70
 var Camera_FOV = 70
 
@@ -124,21 +125,33 @@ func _process(delta: float) -> void:
 	if finishedAttack == false:
 		#start the camera zoom in and slowing at a certain rate of change
 		#THESE NUMBERS ARE PLACEHOLDERS.
-		var zoom_in_speed = 0.1
-		var zoom_in_max = 10
+		var zoom_in_speed = 0.015
+		var zoom_in_max = 50
+		
 		var slow_speed = 0.01
 		var slow_max = 0.2
 		
 		Game_Speed -= slow_speed * delta
-		clamp(Game_Speed, 1 - slow_max, 1)
+		Game_Speed = clamp(Game_Speed, 1 - slow_max, 1)
+		
+		#camera FOV tween
+		Camera_FOV += (Camera_FOV * zoom_in_speed)
+		Camera_FOV = clamp(Camera_FOV, zoom_in_max, 1000)
+		
+		#FIND THE ENEMY WE ARE LOOKING AT AND STORE IT.
 		
 		
 		
-		
-	#reset to normal
+	#reset to and launch
 	if finishedAttack == true:
 		UnLockin.emit()
 		Game_Speed = 1
+		Camera_FOV = Camera_FOV_def
+		currentMovement = MOVEMENT_MODE.ATTACK
 	
+	#CAMERA DYNAMIC FOV CODE GO HERE
+	
+	
+	Camera.FOV = Camera_FOV
 	Engine.time_scale = Game_Speed
 	

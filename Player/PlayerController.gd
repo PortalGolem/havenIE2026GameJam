@@ -6,7 +6,7 @@ enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK, DASH}
 @export var mouseSensitivity:float 
 @export var groundSpeed:float
 @export var airSpeed:float
-@export var airDrag:float
+@export var airDrag:Vector3
 @export var airGravity:float
 @export var wallDrag:float
 @export var wallGravity:float
@@ -132,10 +132,10 @@ func _physics_process(delta: float) -> void:
 		wallCollision = false
 	elif currentMovement == MOVEMENT_MODE.AIR:
 		# accept input left and right and change velocity
-		velocity = velocity.move_toward(Vector3.FORWARD * minZVelocity, delta * airDrag)
+		velocity = move_towards_tripple_vector(Vector3.BACK * minZVelocity, velocity, airDrag)
 		velocity += Vector3(delta * movementInput.x * airSpeed, 0, 0)
 		velocity.y -= airGravity * delta
-		position += velocity.rotated(Vector3.UP, rotation.y) * delta
+		position += Vector3(velocity.x, velocity.y, -velocity.z) * delta
 		#Handle dash inputs
 		check_dash()
 		check_wall()
@@ -233,6 +233,7 @@ func _playerEnterWallCollider(wall:Node3D):
 	print("WALL!")
 	wallNormal = wall.position - position
 	wallX = wall.position.x
+	
 	wallCollision = true
 func _playerEnterFloorCollider(floor:Node3D):
 	pass
@@ -252,12 +253,38 @@ func check_wall():
 	if wallCollision:
 			currentMovement = MOVEMENT_MODE.WALL
 			wallCollision = false
+
+func move_towards_tripple_vector(target:Vector3, startingPosition:Vector3, ammount:Vector3) -> Vector3:
+	var returnAmmount:Vector3
+	if startingPosition.x > target.x:
+		returnAmmount.x = startingPosition.x - ammount.x
+		returnAmmount.x = max(target.x, returnAmmount.x)
+	else:
+		returnAmmount.x = startingPosition.x + ammount.x
+		returnAmmount.x = min(target.x, returnAmmount.x)
+	
+	if startingPosition.y > target.y:
+		returnAmmount.y = startingPosition.y - ammount.y
+		returnAmmount.y = max(target.y, returnAmmount.y)
+	else:
+		returnAmmount.y = startingPosition.y + ammount.y
+		returnAmmount.y = min(target.y, returnAmmount.y)
+	
+	if startingPosition.z > target.z:
+		returnAmmount.z = startingPosition.z - ammount.z
+		returnAmmount.z = max(target.z, returnAmmount.z)
+	else:
+		returnAmmount.z = startingPosition.z + ammount.z
+		returnAmmount.z = min(target.z, returnAmmount.z)
+		
+	return returnAmmount
+
 func check_wall_jump():
 	if jumped && stanima > stanima_jump_cost:
 			stanima -= stanima_jump_cost
 			velocity.y = 0
 			if (wallNormal.x > 0):
-				velocity += Vector3(jumpVector.x, jumpVector.y, -jumpVector.z)
-			else:
 				velocity += Vector3(-jumpVector.x, jumpVector.y, -jumpVector.z)
+			else:
+				velocity += Vector3(jumpVector.x, jumpVector.y, -jumpVector.z)
 			currentMovement = MOVEMENT_MODE.AIR

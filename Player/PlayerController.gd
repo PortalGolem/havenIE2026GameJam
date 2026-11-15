@@ -73,8 +73,11 @@ var finalTargetEnemyPosition:Vector3
 var finalTargetEnemyID:int
 var died = false
 var state_machine:AnimationNodeStateMachinePlayback
+@export var doubleJumpLimit:int
+@export var dashLimit:int
 @export var enemySize:float
-
+var currentDoubleJumps:int
+var currentDashes:int
 @onready var Camera = $CameraPivot/Camera3D
 
 
@@ -120,10 +123,8 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	Engine.time_scale = 1.0
 	
-	#for child in $Animator.get_children():
-	#	if child is AnimationTree:
-	#		print(child)
-	#		break
+	state_machine = find_child_recursive($Animator).get("parameters/playback")
+
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentMovement = initialMovementMode
 
@@ -303,7 +304,8 @@ func findByClass(node: Node, className : String, result : Array) -> void:
 		findByClass(child, className, result)
 	
 func check_dash():
-	if dashed && stanima > stanima_dash_cost:
+	if dashed && currentDashes < doubleJumpLimit && stanima > stanima_dash_cost:
+		currentDashes += 1
 		stanima -= stanima_dash_cost
 		dashed = false
 		currentMovement = MOVEMENT_MODE.DASH
@@ -347,10 +349,23 @@ func check_wall_jump():
 		else:
 			velocity += Vector3(jumpVector.x, jumpVector.y, -jumpVector.z)
 		currentMovement = MOVEMENT_MODE.AIR
+		currentDashes = 0
+		currentDoubleJumps = 0
 
 func check_double_jump():
-	if jumped && stanima > stanima_jump_cost:
+	if jumped && currentDoubleJumps > doubleJumpLimit && stanima > stanima_jump_cost:
 		jumped = false
+		currentDoubleJumps += 1
 		stanima -= stanima_jump_cost
 		velocity.y = 0
 		velocity += Vector3(doubleJumpVector.x, doubleJumpVector.y, -doubleJumpVector.z)
+
+func find_child_recursive(target:Node3D) -> AnimationTree:
+	for child in target.get_children():
+		if child is AnimationTree:
+			return child
+	
+	for child in target.get_children():
+		return find_child_recursive(child)
+	
+	return null

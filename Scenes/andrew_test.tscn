@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://byque4w54oowj" path="res://Player/player.tscn" id="1_qf4af"]
 [ext_resource type="Texture2D" uid="uid://dnbrywea7oakp" path="res://Materials/Textures/Fortress Wall/Fortress_Wall_Color.png" id="2_o24f2"]
+[ext_resource type="PackedScene" uid="uid://cohiqpndtgam" path="res://Objects/Enemy.tscn" id="3_uakvj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2m7an"]
 
@@ -47,6 +48,8 @@ maxYRotation = 45.0
 jumpVector = Vector3(10, 5, 25)
 dashVector = Vector3(0, 3, 20)
 minZVelocity = -1.0
+maxAttackDistance = 1000.0
+enemySize = 0.5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=790657928]
 environment = SubResource("Environment_2m7an")
@@ -98,3 +101,6 @@ shape = SubResource("BoxShape3D_2m7an")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 14.662356, 0, -6.121704, -35.22583)
 material_override = SubResource("StandardMaterial3D_uakvj")
 mesh = SubResource("BoxMesh_lgp2p")
+
+[node name="Enemy" parent="." unique_id=703050472 instance=ExtResource("3_uakvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0086999, 7.7568865, 84.757095)

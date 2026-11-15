@@ -9,15 +9,14 @@ var Player_Lockin = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var Scene = get_tree().get_root()
+	var Scene = get_tree().root.get_child(0)
 	var Player = Scene.find_child("Player")
-	Player.Lockin.connect(Lockin())
-	Player.UnLockin.connect(UnLockin())
+	#Player.UnLockin.connect(_UnLockin)
 	pass # Replace with function body.
 
 func Lockin():
 	visible = true
 
-func UnLockin():
+func _UnLockin():
 	visible = false
 	

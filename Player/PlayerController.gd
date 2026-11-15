@@ -46,6 +46,7 @@ signal enemy_killed(id)
 
 var currentRotation := Vector2.ZERO
 @export var velocity := Vector3.FORWARD * 10
+@export var maxAttackDistance:float = 100.0
 
 var currentMovement:MOVEMENT_MODE
 
@@ -62,7 +63,13 @@ var movementLocked:bool = false
 var wallNormal:Vector3
 signal Lockin()
 signal UnLockin()
-var targets
+var targetIDs:Array[int]
+var targetPositions:Array[Vector3]
+var runFinishedAttack := false
+var finalTargetEnemyPosition:Vector3
+var finalTargetEnemyID:int
+var died = false
+@export var enemySize:float
 
 @onready var Camera = $CameraPivot/Camera3D
 
@@ -114,7 +121,6 @@ func _physics_process(delta: float) -> void:
 	stanima += stanima_regeneration * delta
 	$StanimaBar.Stanima = stanima
 	stanima = clamp(stanima, 0, stanima_max)
-	print(velocity.z)
 	currentRotation += -mouseInput * mouseSensitivity
 	currentRotation.x = clampf(currentRotation.x, deg_to_rad(-maxXRotation + 180), deg_to_rad(maxXRotation + 180))
 	currentRotation.y = clampf(currentRotation.y, deg_to_rad(minYRotation), deg_to_rad(maxYRotation))
@@ -153,7 +159,7 @@ func _physics_process(delta: float) -> void:
 		check_dash()
 		wallCollision = false
 	elif currentMovement == MOVEMENT_MODE.ATTACK:
-		#Handle dash inputs
+		position += (finalTargetEnemyPosition - position).normalized() * 10 * delta
 		check_dash()
 	elif currentMovement == MOVEMENT_MODE.DASH:
 		#setup timers
@@ -193,11 +199,20 @@ func _physics_process(delta: float) -> void:
 		Lockin.emit()
 		var cursors:Array[LockInCursor]
 		findByClass(get_tree().root, "LockInCursor", cursors)
-		#for cursor in cursors:
-		#	if (cursor)
+		var index:int = 0
+		for cursor in cursors:
+			if cursor.position.distance_to(position) < maxAttackDistance:
+				targetPositions.append(cursor.position)
+				targetIDs.append(index)
+			index += 1
 		startedAttack = false
 		finishedAttack = false
-		
+		runFinishedAttack = false
+	
+	var targetedPositions:Array[Vector3]
+	var targetedUVs:Array[Vector2]
+	var targetedIDs:Array[int]
+	
 	if finishedAttack == false:
 		#start the camera zoom in and slowing at a certain rate of change
 		#THESE NUMBERS ARE PLACEHOLDERS.
@@ -214,15 +229,36 @@ func _physics_process(delta: float) -> void:
 		Camera_FOV += (Camera_FOV * zoom_in_speed)
 		Camera_FOV = clamp(Camera_FOV, zoom_in_max, 1000)
 		
-		#FIND THE ENEMY WE ARE LOOKING AT AND STORE IT.
+		
+		
+		var viewport_size:Vector2 = get_viewport().get_visible_rect().size
+		var index:int = 0
+		for point in targetPositions:
+			var pointUV:Vector2 = Camera.unproject_position(point) / viewport_size
+			if pointUV.distance_to(Vector2.ONE * .5) < enemySize:
+				targetedIDs.append(targetIDs[index])
+				targetedPositions.append(point)
+			index += 1
+		
 		
 	#reset to and launch
-	if finishedAttack == true:
-		UnLockin.emit()
-		Game_Speed = 1
-		Camera_FOV = Camera_FOV_def
-	#	currentMovement = MOVEMENT_MODE.ATTACK
-	
+	if finishedAttack == true and runFinishedAttack == false:
+		print("attackFinalized")
+		if targetedIDs.size() > 0:
+			print("enemyFound")
+			UnLockin.emit()
+			Game_Speed = 1
+			Camera_FOV = Camera_FOV_def
+			
+			var closestEnemy:float = INF
+			for i in range(targetedIDs.size()):
+				var testDistance = targetedUVs[i].distance_to(Vector2.ONE * .5)
+				if testDistance < closestEnemy:
+					finalTargetEnemyID = targetedIDs[i]
+					finalTargetEnemyPosition = targetedPositions[i]
+					closestEnemy = testDistance
+			currentMovement = MOVEMENT_MODE.ATTACK
+		runFinishedAttack = true
 	#CAMERA DYNAMIC FOV CODE GO HERE
 	
 	
@@ -230,12 +266,12 @@ func _physics_process(delta: float) -> void:
 	#Engine.time_scale = Game_Speed
 	
 func _playerEnterWallCollider(wall:Node3D):
-	wallNormal = wall.position - position
-	wallX = wall.position.x
+	wallNormal = wall.global_position - global_position
+	wallX = wall.global_position.x
 	if (wallNormal.x > 0):
-		position.x = wallX - wallDistance
+		global_position.x = wallX - wallDistance
 	else:
-		position.x = wallX + wallDistance
+		global_position.x = wallX + wallDistance
 	
 	wallCollision = true
 func _playerEnterFloorCollider(floor:Node3D):

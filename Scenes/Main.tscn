@@ -1,21 +1,9 @@
 [gd_scene format=3 uid="uid://155xx7s6y6ta"]
 
-[ext_resource type="Texture2D" uid="uid://dnbrywea7oakp" path="res://Materials/Textures/Fortress Wall/Fortress_Wall_Color.png" id="1_idj7w"]
 [ext_resource type="PackedScene" uid="uid://byque4w54oowj" path="res://Player/player.tscn" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://brl2e02v7xk3w" path="res://Objects/Procedural.tscn" id="3_kln2b"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_idj7w"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_kln2b"]
-size = Vector3(1, 35.49048, 610.9808)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kln2b"]
-albedo_texture = ExtResource("1_idj7w")
-
-[sub_resource type="BoxMesh" id="BoxMesh_rgh2o"]
-size = Vector3(1, 35.49048, 71.45166)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgh2o"]
-albedo_texture = ExtResource("1_idj7w")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pbw6q"]
 
@@ -51,32 +39,6 @@ mesh = SubResource("BoxMesh_idj7w")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1852422, -22.310482)
 mesh = SubResource("BoxMesh_idj7w")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=110971663]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.272188, 0, 71.14825)
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=426617479]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.121704, 205.52997)
-shape = SubResource("BoxShape3D_kln2b")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1367865020]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 14.662356, 4.7683716e-07, -6.121704, -35.22583)
-material_override = SubResource("StandardMaterial3D_kln2b")
-mesh = SubResource("BoxMesh_rgh2o")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=100686751]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.865132, 0, 71.14825)
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=288012873]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.121704, -6.2170715)
-shape = SubResource("BoxShape3D_kln2b")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=1032606640]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 14.662356, 0, -6.121704, -35.22583)
-material_override = SubResource("StandardMaterial3D_rgh2o")
-mesh = SubResource("BoxMesh_rgh2o")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=50909629]
 environment = SubResource("Environment_jw32o")
 
@@ -85,10 +47,10 @@ sync_to_physics = false
 mouseSensitivity = 0.01
 groundSpeed = 50.0
 airSpeed = 12.0
-airDrag = Vector3(1, 0, 17.5)
-airGravity = 5.0
+airDrag = Vector3(0.5, 0, 12)
+airGravity = 4.0
 wallDrag = 10.0
-wallGravity = 5.0
+wallGravity = 14.0
 wallDistance = 1.0
 DashSpeed = 100.0
 initialMovementMode = 1
@@ -97,9 +59,12 @@ minYRotation = -30.0
 maxYRotation = 45.0
 jumpVector = Vector3(15, 5, 17.5)
 dashVector = Vector3(0, 1, 20)
-minZVelocity = -10.0
+Camera_FOV_def = 70
+minZVelocity = 10.0
 dash_time = 35.0
 dash_speed = 12.5
 dash_lock_time = 30.0
 stanima = 100
 stanima_regeneration = 1.75
+
+[node name="Procedural" parent="." unique_id=959096524 instance=ExtResource("3_kln2b")]

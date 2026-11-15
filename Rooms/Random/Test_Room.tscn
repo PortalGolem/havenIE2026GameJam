@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://c5rvwcp4pjao2"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_jq2tr"]
+size = Vector3(3.8562012, 1.8774414, 1)
+
 [node name="Start" type="Node3D" unique_id=2038951143]
 
 [node name="End" type="Node3D" parent="." unique_id=954906942]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5710186, 2.5853677)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8419814, 2.5853677)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=706729928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50964355, 0.4387207, 0)
+mesh = SubResource("BoxMesh_jq2tr")

@@ -1,6 +1,46 @@
 [gd_scene format=3 uid="uid://bc2navoi4cvju"]
 
+[ext_resource type="Texture2D" uid="uid://dnbrywea7oakp" path="res://Materials/Textures/Fortress Wall/Fortress_Wall_Color.png" id="2_sbqc7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4jlny"]
+size = Vector3(1, 35.49048, 1045.4825)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsx41"]
+albedo_texture = ExtResource("2_sbqc7")
+
+[sub_resource type="BoxMesh" id="BoxMesh_kxl16"]
+size = Vector3(1, 35.49048, 71.45166)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75dvw"]
+albedo_texture = ExtResource("2_sbqc7")
+
 [node name="Start" type="Node3D" unique_id=1440636408]
 
 [node name="End" type="Node3D" parent="." unique_id=1945841556]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40884602, 2.162814)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40884602, 1046.39)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2011556358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.816292, 0, 557.7727)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1133300425]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.121704, -37.055786)
+shape = SubResource("BoxShape3D_4jlny")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1661222433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 14.662356, 4.7683716e-07, -6.121704, -35.22583)
+material_override = SubResource("StandardMaterial3D_bsx41")
+mesh = SubResource("BoxMesh_kxl16")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=362308974]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.644997, 0, 557.7727)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1119089040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.121704, -32.805542)
+shape = SubResource("BoxShape3D_4jlny")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=108985863]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 14.662356, 0, -6.121704, -35.22583)
+material_override = SubResource("StandardMaterial3D_75dvw")
+mesh = SubResource("BoxMesh_kxl16")

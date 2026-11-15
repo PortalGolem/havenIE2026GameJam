@@ -7,7 +7,11 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2m7an"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_lgp2p"]
+radius = 0.58963436
+
 [node name="Player" type="AnimatableBody3D" unique_id=944310348]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_l8h54")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=414659512]
@@ -22,6 +26,19 @@ shape = SubResource("SphereShape3D_2m7an")
 transform = Transform3D(1, 0, 0, 0, 0.9746737, 0.22363204, 0, -0.22363204, 0.9746737, 0, 2.1963158, 3.689209)
 fov = 80.0
 
-[node name="Timer" type="Timer" parent="." unique_id=618764724]
-
 [node name="StanimaBar" parent="." unique_id=1967122980 instance=ExtResource("2_4ntmi")]
+
+[node name="WallCollider" type="Area3D" parent="." unique_id=705150687]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallCollider" unique_id=181315078]
+shape = SubResource("SphereShape3D_lgp2p")
+
+[node name="FloorCollider" type="Area3D" parent="." unique_id=1890467018]
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorCollider" unique_id=594924556]
+shape = SubResource("SphereShape3D_lgp2p")
+
+[connection signal="body_entered" from="WallCollider" to="." method="_playerEnterWallCollider"]
+[connection signal="body_entered" from="FloorCollider" to="." method="_playerEnterFloorCollider"]

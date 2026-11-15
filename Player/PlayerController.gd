@@ -33,7 +33,7 @@ enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK, DASH}
 var dashing = false
 
 var stanima_max = 100
-var stanima_cur = 100
+@export var stanima = 100
 var stanima_dash_cost = 10
 var stanima_jump_cost = 10
 var stanima_regeneration = 0.5

@@ -24,6 +24,7 @@ enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK, DASH}
 @export var Camera_FOV = 70
 
 @export var Game_Speed = 1
+@export var minZVelocity: float
 
 #dash variables
 @export var dash_time := 180.0
@@ -129,7 +130,7 @@ func _physics_process(delta: float) -> void:
 		wallCollision = false
 	elif currentMovement == MOVEMENT_MODE.AIR:
 		# accept input left and right and change velocity
-		velocity.move_toward(Vector3.ZERO, delta * airDrag)
+		velocity.move_toward(Vector3.BACK * minZVelocity, delta * airDrag)
 		velocity += Vector3(delta * movementInput.x * airSpeed, 0, 0)
 		velocity.y -= airGravity * delta
 		position += velocity.rotated(Vector3.UP, rotation.y) * delta

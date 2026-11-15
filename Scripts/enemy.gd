@@ -7,6 +7,7 @@ var cyclic = false
 var direction = 1.0
 var Scene
 var Player
+var id
 
 
 # Called when the node enters the scene tree for the first time.

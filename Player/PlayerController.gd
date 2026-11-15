@@ -61,6 +61,7 @@ var movementLocked:bool = false
 var wallNormal:Vector3
 signal Lockin()
 signal UnLockin()
+var targets
 
 @onready var Camera = $CameraPivot/Camera3D
 
@@ -188,11 +189,11 @@ func _physics_process(delta: float) -> void:
 	#DASH MOVEMENT CODE
 	if dash_timer > 0:
 		dash_timer -= delta
-		position += dashDirection * DashSpeed * delta
-	else:
+		position += (dashDirection * (DashSpeed + velocity.y) ) * delta
+	elif dashing:
 		velocity.y = 0
 		velocity.x = 0
-		velocity += jumpVector
+		velocity += Vector3(-dashVector.x, dashVector.y, -dashVector.z)
 		dashing = false
 	
 	

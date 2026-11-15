@@ -18,6 +18,7 @@ enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK, DASH}
 @export var minYRotation:float
 @export var maxYRotation:float
 @export var jumpVector:Vector3
+@export var dashVector:Vector3
 
 @export var Camera_FOV_def = 701
 @export var Camera_FOV = 70
@@ -25,11 +26,11 @@ enum MOVEMENT_MODE {GROUND, AIR, WALL, ATTACK, DASH}
 @export var Game_Speed = 1
 
 #dash variables
-@export var dash_time = 180
-@export var dash_timer = dash_time
-@export var dash_speed = 30
-@export var dash_lock_time = 120
-@export var dash_lock_timer = dash_lock_time
+@export var dash_time := 180.0
+@export var dash_timer := 0
+@export var dash_speed := 30.0
+@export var dash_lock_time := 120.0
+@export var dash_lock_timer := 0
 var dashing = false
 
 var stanima_max = 100
@@ -55,6 +56,7 @@ var startedAttack:bool = false
 var finishedAttack:bool = false
 var jumped:bool = false
 var dashed:bool = false
+var dashDirection:Vector3
 var movementLocked:bool = false
 var wallNormal:Vector3
 signal Lockin()
@@ -84,26 +86,28 @@ func _input(event: InputEvent) -> void:
 			movementInput.y += 1.0
 		elif event.is_action_released("Backward"):
 			movementInput.y += -1.0
-		elif event.is_action_pressed("Attack"):
-			startedAttack = true
-		elif event.is_action_released("Attack"):
-			finishedAttack = true
+		#elif event.is_action_pressed("Attack"):
+		#	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		#	startedAttack = true
+		#elif event.is_action_released("Attack"):
+		#	finishedAttack = true
 		elif event.is_action_pressed("Jump"):
 			jumped = true
 		elif event.is_action_released("Jump"):
 			jumped = false
 		elif event.is_action_pressed("Dash"):
 			dashed = true
-		elif event.is_action_pressed("Dash"):
-			dashed = false
+		elif event.is_action_pressed("Settings"):
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentMovement = initialMovementMode
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	#STANIMA CODE
 	stanima += stanima_regeneration * delta
 	
@@ -130,6 +134,7 @@ func _process(delta: float) -> void:
 		position += velocity.rotated(Vector3.UP, rotation.y) * delta
 		#Handle dash inputs
 		if dashed:
+			dashed = false
 			currentMovement = MOVEMENT_MODE.DASH
 		if wallCollision:
 			currentMovement = MOVEMENT_MODE.WALL
@@ -140,7 +145,10 @@ func _process(delta: float) -> void:
 		velocity.move_toward(Vector3.ZERO, wallDrag * delta)
 		
 		position += Vector3(velocity.x, velocity.y, -velocity.z) * delta
-		position.x = wallX + wallNormal.x
+		if (wallNormal.x > 0):
+			position.x = wallX - wallDistance
+		else:
+			position.x = wallX + wallDistance
 		if jumped:
 			if (wallNormal.x > 0):
 				velocity += jumpVector
@@ -149,6 +157,7 @@ func _process(delta: float) -> void:
 			currentMovement = MOVEMENT_MODE.AIR
 		#Handle dash inputs
 		if dashed:
+			dashed = false
 			currentMovement = MOVEMENT_MODE.DASH
 		wallCollision = false
 	elif currentMovement == MOVEMENT_MODE.ATTACK:
@@ -162,18 +171,24 @@ func _process(delta: float) -> void:
 			dash_lock_timer = dash_lock_time
 			dashing = true
 			
-			#GET CAMERA DIRECTION SO WE CAN NORMALIZE OUR MOVEMENT IN THE DIRECTION WE WANNA
+			#apparently this gets forwards.
+			dashDirection = -global_basis.z
+		
+		if wallCollision:
+			dashDirection = Vector3.BACK
 		
 		dash_lock_timer -= delta
 		if dash_lock_timer <= 0:
 			if wallCollision:
 				currentMovement = MOVEMENT_MODE.WALL
 				wallCollision = false
+			else:
+				currentMovement = MOVEMENT_MODE.AIR
 	
 	#DASH MOVEMENT CODE
 	if dash_timer > 0:
 		dash_timer -= delta
-		#USE CAMERA DIRECTION TO DEFINE WHERE HE MOVES EACH FRAME
+		position += dashDirection * DashSpeed * delta
 	else:
 		dashing = false
 	
@@ -219,6 +234,7 @@ func _process(delta: float) -> void:
 	#Engine.time_scale = Game_Speed
 	
 func _playerEnterWallCollider(wall:Node3D):
+	print("WALL!")
 	wallNormal = wall.position - position
 	wallX = wall.position.x
 	wallCollision = true

@@ -113,7 +113,8 @@ func _physics_process(delta: float) -> void:
 	#STANIMA CODE
 	stanima += stanima_regeneration * delta
 	$StanimaBar.Stanima = stanima
-	
+	stanima = clamp(stanima, 0, stanima_max)
+	print(velocity.z)
 	currentRotation += -mouseInput * mouseSensitivity
 	currentRotation.x = clampf(currentRotation.x, deg_to_rad(-maxXRotation + 180), deg_to_rad(maxXRotation + 180))
 	currentRotation.y = clampf(currentRotation.y, deg_to_rad(minYRotation), deg_to_rad(maxYRotation))
@@ -122,7 +123,7 @@ func _physics_process(delta: float) -> void:
 	rotate(Vector3.UP, currentRotation.x)
 	$CameraPivot.rotate(Vector3.RIGHT, currentRotation.y)
 	mouseInput = Vector2.ZERO
-	print(currentMovement)
+	
 	if currentMovement == MOVEMENT_MODE.GROUND:
 		var movement = movementInput.normalized() * groundSpeed * delta
 		movement = Vector3(movement.x, 0, movement.y)

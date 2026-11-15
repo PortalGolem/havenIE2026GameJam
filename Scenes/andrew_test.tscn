@@ -46,19 +46,7 @@ minYRotation = -30.0
 maxYRotation = 45.0
 jumpVector = Vector3(10, 5, 25)
 dashVector = Vector3(0, 3, 20)
-Camera_FOV_def = null
-Camera_FOV = null
-Game_Speed = null
 minZVelocity = -1.0
-dash_time = null
-dash_timer = null
-dash_speed = null
-dash_lock_time = null
-dash_lock_timer = null
-stanima_dash_cost = null
-stanima_jump_cost = null
-stanima_regeneration = null
-velocity = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=790657928]
 environment = SubResource("Environment_2m7an")

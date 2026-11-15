@@ -48,6 +48,7 @@ maxXRotation = 45.0
 minYRotation = -30.0
 maxYRotation = 45.0
 jumpVector = Vector3(10, 5, 25)
+doubleJumpVector = Vector3(0, 1, 0)
 dashVector = Vector3(0, 3, 20)
 minZVelocity = -1.0
 maxAttackDistance = 1000.0

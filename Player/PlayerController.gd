@@ -257,7 +257,7 @@ func check_wall_jump():
 			stanima -= stanima_jump_cost
 			velocity.y = 0
 			if (wallNormal.x > 0):
-				velocity += jumpVector
+				velocity += Vector3(jumpVector.x, jumpVector.y, -jumpVector.z)
 			else:
-				velocity += Vector3(-jumpVector.x, jumpVector.y, jumpVector.z)
+				velocity += Vector3(-jumpVector.x, jumpVector.y, -jumpVector.z)
 			currentMovement = MOVEMENT_MODE.AIR

@@ -72,7 +72,7 @@ var runFinishedAttack := false
 var finalTargetEnemyPosition:Vector3
 var finalTargetEnemyID:int
 var died = false
-var state_machine:AnimationNodeStateMachinePlayback
+@onready var state_machine: AnimationNodeStateMachinePlayback = $Animator/AnimationPlayer/AnimationTree.get("parameters/playback")
 @export var doubleJumpLimit:int
 @export var dashLimit:int
 @export var enemySize:float
@@ -121,9 +121,9 @@ func _input(event: InputEvent) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	state_machine.travel("Falling")
 	Engine.time_scale = 1.0
 	
-	state_machine = find_child_recursive($Animator).get("parameters/playback")
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentMovement = initialMovementMode
@@ -305,6 +305,7 @@ func findByClass(node: Node, className : String, result : Array) -> void:
 	
 func check_dash():
 	if dashed && currentDashes < doubleJumpLimit && stanima > stanima_dash_cost:
+		state_machine.travel("Sprint")
 		currentDashes += 1
 		stanima -= stanima_dash_cost
 		dashed = false
@@ -341,6 +342,7 @@ func move_towards_tripple_vector(target:Vector3, startingPosition:Vector3, ammou
 
 func check_wall_jump():
 	if jumped && stanima > stanima_jump_cost:
+		state_machine.travel("jumping")
 		jumped = false
 		stanima -= stanima_jump_cost
 		velocity.y = 0
@@ -354,18 +356,20 @@ func check_wall_jump():
 
 func check_double_jump():
 	if jumped && currentDoubleJumps > doubleJumpLimit && stanima > stanima_jump_cost:
+		state_machine.travel("DoubleJump")
 		jumped = false
 		currentDoubleJumps += 1
 		stanima -= stanima_jump_cost
 		velocity.y = 0
 		velocity += Vector3(doubleJumpVector.x, doubleJumpVector.y, -doubleJumpVector.z)
 
-func find_child_recursive(target:Node3D) -> AnimationTree:
+func find_child_recursive(target: Node) -> AnimationTree:
 	for child in target.get_children():
 		if child is AnimationTree:
 			return child
-	
-	for child in target.get_children():
-		return find_child_recursive(child)
-	
+
+		var result := find_child_recursive(child)
+		if result != null:
+			return result
+
 	return null

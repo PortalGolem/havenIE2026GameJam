@@ -19,9 +19,9 @@ anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -143.99994
-offset_top = 542.00006
+offset_top = 931.0
 offset_right = 49.919006
-offset_bottom = -33.702576
+offset_bottom = 355.29736
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.48, 1.48)
@@ -66,6 +66,7 @@ theme_override_font_sizes/normal_font_size = 16
 text = "STAMINA"
 
 [node name="VelocityBlue" type="RichTextLabel" parent="." unique_id=1677497314]
+visible = false
 layout_mode = 0
 offset_left = 37.16214
 offset_top = 27.702667

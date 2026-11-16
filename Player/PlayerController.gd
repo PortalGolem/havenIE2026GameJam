@@ -304,6 +304,7 @@ func findByClass(node: Node, className : String, result : Array) -> void:
 func check_dash():
 	if dashed && currentDashes < doubleJumpLimit && stanima > stanima_dash_cost:
 		currentDashes += 1
+		currentDashes = min(currentDashes, dashLimit)
 		stanima -= stanima_dash_cost
 		dashed = false
 		currentMovement = MOVEMENT_MODE.DASH
@@ -354,6 +355,7 @@ func check_double_jump():
 	if jumped && currentDoubleJumps < doubleJumpLimit && stanima > stanima_jump_cost:
 		jumped = false
 		currentDoubleJumps += 1
+		currentDoubleJumps = min(currentDoubleJumps, doubleJumpLimit)
 		stanima -= stanima_jump_cost
 		velocity.y = 0
 		velocity += Vector3(doubleJumpVector.x, doubleJumpVector.y, -doubleJumpVector.z)

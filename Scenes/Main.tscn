@@ -66,7 +66,7 @@ dash_time = 35.0
 dash_speed = 12.5
 dash_lock_time = 30.0
 stanima = 100
-stanima_regeneration = 5.0
+stanima_regeneration = 7.5
 doubleJumpLimit = 2
 dashLimit = 1
 

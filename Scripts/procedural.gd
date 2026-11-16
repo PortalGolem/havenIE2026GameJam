@@ -5,7 +5,8 @@ var Start_Room_Inst
 var End_Room = preload("res://Rooms/Fixed/End_Room.tscn");
 var End_Room_Inst
 
-var Random_Rooms = ["res://Rooms/Random/Test_Room.tscn", "res://Rooms/Random/Test_Room2.tscn"]
+var Random_Rooms = ["res://Rooms/Random/Test_Room.tscn", "res://Rooms/Random/Test_Room2.tscn",
+"res://Rooms/Random/LASTROOM.tscn", "res://Rooms/Random/POPOPOPPOPPO.tscn", "res://Rooms/Random/Room_01.tscn", ]
 var Room_Amount = 20
 var Rand_Room_Inst:Array
 var Scene  

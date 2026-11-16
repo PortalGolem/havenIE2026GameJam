@@ -1,26 +1,27 @@
-[gd_scene format=3 uid="uid://cboce0h5dut80"]
+[gd_scene format=3 uid="uid://dy58v285cb3mm"]
 
 [ext_resource type="Texture2D" uid="uid://dnbrywea7oakp" path="res://Materials/Textures/Fortress Wall/Fortress_Wall_Color.png" id="1_0g7au"]
+[ext_resource type="PackedScene" uid="uid://b6mwo7gc1imka" path="res://Assets/FBX Files/FortressWall.fbx" id="1_5krae"]
 [ext_resource type="Texture2D" uid="uid://b6kbddpj2xdj" path="res://Materials/Textures/Fortress Wall/Fortress_Wall_Normal.png" id="2_5krae"]
 [ext_resource type="Texture2D" uid="uid://uumqy6s7pq1n" path="res://Materials/Textures/Fortress Wall/Fortress_Wall_Roughness.png" id="3_bwab6"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_016br"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8dton"]
 albedo_texture = ExtResource("1_0g7au")
 roughness_texture = ExtResource("3_bwab6")
 normal_enabled = true
 normal_texture = ExtResource("2_5krae")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6faft"]
-size = Vector3(103.22974, 20.229065, 17.86924)
+size = Vector3(95.190186, 19, 18.073845)
 
-[node name="FortressWall" unique_id=1340503585]
+[node name="FortressWall" unique_id=1702138080 instance=ExtResource("1_5krae")]
 
-[node name="Fortress_Wall" parent="." index="0" unique_id=269696847]
-surface_material_override/0 = SubResource("StandardMaterial3D_016br")
+[node name="Fortress_Wall" parent="." index="0" unique_id=1172782117]
+surface_material_override/0 = SubResource("StandardMaterial3D_8dton")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1785279730]
-collision_layer = 2
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=250381733]
+collision_layer = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=645292448]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10241699, -6.0363464, -3.0911903)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1427357737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25671387, -4.623535, -3.0707054)
 shape = SubResource("BoxShape3D_6faft")

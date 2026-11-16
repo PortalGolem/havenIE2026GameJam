@@ -1,6 +1,19 @@
 [gd_scene format=3 uid="uid://c5rvwcp4pjao2"]
 
 [ext_resource type="PackedScene" uid="uid://cecjcmhwohpui" path="res://Assets/Models/wall_terrain_large.tscn" id="1_235x6"]
+[ext_resource type="PackedScene" uid="uid://dwmjji4rgwwhq" path="res://Assets/Models/scaffolding_large.tscn" id="2_w7ker"]
+[ext_resource type="PackedScene" uid="uid://b3ojylgg1ygnb" path="res://Assets/Models/fortress_small.tscn" id="3_kc6uv"]
+[ext_resource type="PackedScene" uid="uid://rw8u3lh3cxnu" path="res://Assets/Models/fortress_large.tscn" id="4_i5gtp"]
+[ext_resource type="Texture2D" uid="uid://dnbrywea7oakp" path="res://Materials/Textures/Fortress Wall/Fortress_Wall_Color.png" id="5_kc6uv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i5gtp"]
+size = Vector3(76.92703, 12.517578, 1070.3954)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgerm"]
+albedo_texture = ExtResource("5_kc6uv")
+
+[sub_resource type="BoxMesh" id="BoxMesh_bvynb"]
+size = Vector3(63.843445, 12.417725, 1069.8544)
 
 [node name="Start" type="Node3D" unique_id=2038951143]
 
@@ -90,3 +103,45 @@ transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-
 
 [node name="WallTerrain_Large32" parent="." unique_id=1461285255 instance=ExtResource("1_235x6")]
 transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.672516, 18.05566, 1030.3557)
+
+[node name="ScaffoldingLarge" parent="." unique_id=90800242 instance=ExtResource("2_w7ker")]
+transform = Transform3D(0.0020283011, 0, -0.99999803, -0.3207842, 0.9471521, -0.00065064826, 0.94715023, 0.3207849, 0.0019211096, 11.78632, 12.7392845, 69.23864)
+
+[node name="FortressSmall" parent="." unique_id=1959204486 instance=ExtResource("3_kc6uv")]
+transform = Transform3D(-0.4839244, -0.87510985, 0, 0.87510985, -0.4839244, 0, 0, 0, 1, -11.71209, 10.938538, 134.83646)
+
+[node name="FortressLarge" parent="." unique_id=2112361084 instance=ExtResource("4_i5gtp")]
+transform = Transform3D(0.84422386, -0.5359908, 0, 0.5359908, 0.84422386, 0, 0, 0, 1, 12.954298, -39.937828, 288.57013)
+
+[node name="FortressSmall2" parent="." unique_id=850388910 instance=ExtResource("3_kc6uv")]
+transform = Transform3D(7.0175157, 0, 0, 0, -0.8623873, 0.5062491, 0, -0.5062491, -0.8623873, 0.48565865, 18.998756, 447.46695)
+
+[node name="ScaffoldingLarge2" parent="." unique_id=1363701640 instance=ExtResource("2_w7ker")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.903711, 8.33783, 524.7282)
+
+[node name="FortressLarge2" parent="." unique_id=858248838 instance=ExtResource("4_i5gtp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.85565, -17.53669, 626.4088)
+
+[node name="FortressLarge3" parent="." unique_id=763959436 instance=ExtResource("4_i5gtp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.1258, -19.132706, 710.7877)
+
+[node name="FortressLarge4" parent="." unique_id=405044843 instance=ExtResource("4_i5gtp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.00151, -13.701996, 818.2787)
+
+[node name="FortressLarge5" parent="." unique_id=301457103 instance=ExtResource("4_i5gtp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.17027, -23.476532, 925.80884)
+
+[node name="FortressSmall3" parent="." unique_id=912333617 instance=ExtResource("3_kc6uv")]
+transform = Transform3D(0.049410082, 0.9987786, 0, -0.9987786, 0.049410082, 0, 0, 0, 1, 21.662783, 9.939072, 867.0393)
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=2072304192]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1257360534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3745613, -32.268875, 534.2036)
+shape = SubResource("BoxShape3D_i5gtp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1131385344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25375366, -32.25937, 533.8847)
+material_override = SubResource("StandardMaterial3D_sgerm")
+mesh = SubResource("BoxMesh_bvynb")

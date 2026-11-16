@@ -20,6 +20,7 @@ size = Vector3(9, 27.518555, 8)
 surface_material_override/0 = SubResource("StandardMaterial3D_stuha")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=857291773]
+collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1942932998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.2592773, 0.06298828)

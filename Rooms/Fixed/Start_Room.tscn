@@ -136,3 +136,6 @@ transform = Transform3D(3.2564955, 0, 0, 0, 1, 0, 0, 0, 3.2164636, 1.5556173, -1
 
 [node name="WallTerrain_Large32" parent="." unique_id=1695507493 instance=ExtResource("3_bsx41")]
 transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 1030.3557)
+
+[node name="Floor" parent="." unique_id=1500847173 instance=ExtResource("2_4jlny")]
+transform = Transform3D(1, 0, 0, 0, -1, 1.5743522e-06, 0, -8.742278e-08, -18.00849, -2.3243256, -118.559975, 534.7044)

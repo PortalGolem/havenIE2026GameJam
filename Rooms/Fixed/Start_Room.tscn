@@ -4,9 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://dwmjji4rgwwhq" path="res://Assets/Models/scaffolding_large.tscn" id="3_4jlny"]
 [ext_resource type="PackedScene" uid="uid://cecjcmhwohpui" path="res://Assets/Models/wall_terrain_large.tscn" id="3_bsx41"]
 [ext_resource type="PackedScene" uid="uid://b3ojylgg1ygnb" path="res://Assets/Models/fortress_small.tscn" id="4_bsx41"]
+[ext_resource type="Texture2D" uid="uid://dnbrywea7oakp" path="res://Materials/Textures/Fortress Wall/Fortress_Wall_Color.png" id="5_kxl16"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jq2tr"]
 size = Vector3(43.915405, 87.04956, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_75dvw"]
+size = Vector3(76.92703, 12.517578, 1070.3954)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x26yy"]
+albedo_texture = ExtResource("5_kxl16")
+
+[sub_resource type="BoxMesh" id="BoxMesh_qjfdp"]
+size = Vector3(63.843445, 12.417725, 1069.8544)
 
 [node name="Start" type="Node3D" unique_id=1440636408]
 
@@ -137,5 +147,14 @@ transform = Transform3D(3.2564955, 0, 0, 0, 1, 0, 0, 0, 3.2164636, 1.5556173, -1
 [node name="WallTerrain_Large32" parent="." unique_id=1695507493 instance=ExtResource("3_bsx41")]
 transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 20.758917, 18.05566, 1030.3557)
 
-[node name="Floor" parent="." unique_id=1500847173 instance=ExtResource("2_4jlny")]
-transform = Transform3D(1, 0, 0, 0, -1, 1.5743522e-06, 0, -8.742278e-08, -18.00849, -2.3243256, -118.559975, 534.7044)
+[node name="Floor" type="StaticBody3D" parent="." unique_id=939979367]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1511891474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3745613, -32.268875, 534.2036)
+shape = SubResource("BoxShape3D_75dvw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=471819877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25375366, -32.25937, 533.8847)
+material_override = SubResource("StandardMaterial3D_x26yy")
+mesh = SubResource("BoxMesh_qjfdp")

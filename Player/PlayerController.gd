@@ -351,7 +351,7 @@ func check_wall_jump():
 		currentDoubleJumps = 0
 
 func check_double_jump():
-	if jumped && currentDoubleJumps > doubleJumpLimit && stanima > stanima_jump_cost:
+	if jumped && currentDoubleJumps < doubleJumpLimit && stanima > stanima_jump_cost:
 		jumped = false
 		currentDoubleJumps += 1
 		stanima -= stanima_jump_cost

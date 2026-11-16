@@ -52,6 +52,8 @@ doubleJumpVector = Vector3(0, 1, 0)
 dashVector = Vector3(0, 3, 20)
 minZVelocity = -1.0
 maxAttackDistance = 1000.0
+doubleJumpLimit = 1
+dashLimit = 1
 enemySize = 0.5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=790657928]

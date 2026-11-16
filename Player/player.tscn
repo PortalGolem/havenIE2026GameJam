@@ -11,8 +11,12 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_lgp2p"]
 radius = 0.49518242
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ea0nr"]
+billboard_mode = 1
+
 [sub_resource type="QuadMesh" id="QuadMesh_k53q1"]
 resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ea0nr")
 size = Vector2(0.1, 0.1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_fhl08"]

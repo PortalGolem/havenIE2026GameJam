@@ -5,7 +5,7 @@ var Start_Room_Inst
 var End_Room = preload("res://Rooms/Fixed/End_Room.tscn");
 var End_Room_Inst
 
-var Random_Rooms = [ResourceLoader.list_directory("res://Rooms/Random/")]
+var Random_Rooms = ["res://Rooms/Random/Test_Room.tscn", "res://Rooms/Random/Test_Room2.tscn"]
 var Room_Amount = 20
 var Rand_Room_Inst:Array
 var Scene  
@@ -26,8 +26,9 @@ func _ready() -> void:
 	
 	for i in Room_Amount:
 
-		var Room_Rand = Random_Rooms[randi_range(0, Random_Rooms.size())-1]
-		var Room = load("res://Rooms/Random/" + Room_Rand[0])
+		var Room_Rand = Random_Rooms[randi_range(0, Random_Rooms.size()-1)]
+		print(Room_Rand)
+		var Room = load(Room_Rand)
 		Rand_Room_Inst.append(Room.instantiate())
 		Scene.add_child.call_deferred(Rand_Room_Inst[i])
 		

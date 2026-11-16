@@ -58,6 +58,7 @@ maxXRotation = 45.0
 minYRotation = -30.0
 maxYRotation = 45.0
 jumpVector = Vector3(15, 9, 17.5)
+doubleJumpVector = Vector3(0, 12, 0)
 dashVector = Vector3(0, 1, 20)
 Camera_FOV_def = 70
 minZVelocity = 10.0
@@ -66,5 +67,7 @@ dash_speed = 12.5
 dash_lock_time = 30.0
 stanima = 100
 stanima_regeneration = 5.0
+doubleJumpLimit = 2
+dashLimit = 1
 
 [node name="Procedural" parent="." unique_id=959096524 instance=ExtResource("3_kln2b")]
